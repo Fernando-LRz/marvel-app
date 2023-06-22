@@ -3,12 +3,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import CharacterStackNavigator from './CharacterStackNavigator';
-import SearchCharacterScreen from '../../screens/character/SearchCharacterScreen';
+import ComicStackNavigator from './ComicStackNavigator';
+import SearchComicScreen from '../screens/SearchComicScreen';
 
 const Tab = createBottomTabNavigator();
 
-const CharacterBottomTabNavigator = () => {
+const ComicBottomTabNavigator = () => {
     return (
         <Tab.Navigator
             screenOptions={{
@@ -27,8 +27,8 @@ const CharacterBottomTabNavigator = () => {
             }}
         >
             <Tab.Screen 
-                name="CharacterStackNavigator" 
-                component={ CharacterStackNavigator } 
+                name="ComicStackNavigator" 
+                component={ ComicStackNavigator } 
                 options={{
                     tabBarLabel: "Home",
                     tabBarIcon: ({ color, focused }) => 
@@ -41,21 +41,19 @@ const CharacterBottomTabNavigator = () => {
             />
             <Tab.Screen 
                 name="SearchCharacterScreen" 
-                component={ SearchCharacterScreen } 
+                component={ SearchComicScreen } 
                 options={{
                     tabBarLabel: "Search",
                     tabBarIcon: ({ color, focused }) => 
-                        (   <Icon 
-                                name="search-outline" 
-                                color={ color } 
-                                size={ ( focused ) ? 30 : 25 }
-                            />
-                        ),
-                    
+                        <Icon 
+                            name="search-outline" 
+                            color={ color } 
+                            size={ ( focused ) ? 30 : 25 }
+                        />
                 }}
             />
         </Tab.Navigator>
     );
 };
 
-export default CharacterBottomTabNavigator;
+export default ComicBottomTabNavigator;

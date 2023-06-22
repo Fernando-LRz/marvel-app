@@ -1,8 +1,8 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import ComicHomeScreen from '../../screens/comic/ComicHomeScreen';
-import ComicDetailsScreen from '../../screens/comic/ComicDetailsScreen';
+import ComicHomeScreen from '../screens/ComicHomeScreen';
+import ComicDetailsScreen from '../screens/ComicDetailsScreen';
 
 const Stack = createStackNavigator();
 

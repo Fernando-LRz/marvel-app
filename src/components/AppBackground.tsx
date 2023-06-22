@@ -9,7 +9,7 @@ const AppBackground = ({ children }: any) => {
     const [ isOnHomeScreen, setIsOnHomeScreen ] = useState<boolean>(true);
 
     useEffect(() => {
-        if(background.currentBackground === 'homeScreen') setIsOnHomeScreen(true);
+        if (background.current === 'homeScreen') setIsOnHomeScreen(true);
         else setIsOnHomeScreen(false);
     }, [ background ]);
 
@@ -17,8 +17,8 @@ const AppBackground = ({ children }: any) => {
         <ImageBackground
             source={ 
                 isOnHomeScreen 
-                ? require('../assets/avengers-bg.png') 
-                : require('../assets/marvel-bg.png') 
+                ? require('../assets/app-avengers-bg.png') 
+                : require('../assets/app-marvel-bg.png') 
             }
             style={{ flex: 1 }}
         >

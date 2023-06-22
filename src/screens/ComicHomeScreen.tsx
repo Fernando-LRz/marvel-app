@@ -2,12 +2,12 @@ import React, { useContext, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
-import { BackgroundContext } from '../../context/BackgroundContext';
+import { BackgroundContext } from '../context/BackgroundContext';
 
 interface Props extends BottomTabScreenProps<any, any>{};
 
-const CharacterHomeScreen = ({ navigation }: Props) => {
-    
+const ComicHomeScreen = ({ navigation }: Props) => {
+
     const { setHomeScreenBackground } = useContext( BackgroundContext );
 
     useEffect(() => {
@@ -16,7 +16,7 @@ const CharacterHomeScreen = ({ navigation }: Props) => {
 
     return (
         <View style={ styles.container }>
-            <Text>CharacterHomeScreen</Text>
+            <Text>ComicHomeScreen</Text>
         </View>
     );
 };
@@ -29,4 +29,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default CharacterHomeScreen;
+export default ComicHomeScreen;

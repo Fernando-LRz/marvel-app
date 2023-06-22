@@ -14,11 +14,11 @@ export const BackgroundProvider = ({ children }: any) => {
     const [ background, dispatch ] = useReducer( BackgroundReducer, homeScreenBackground );
 
     const setHomeScreenBackground = () => {
-        dispatch({ type: 'setHomeScreenBackground' })
+        dispatch({ type: 'setHomeScreenBackground' });
     }
 
     const setSearchScreenBackground = () => {
-        dispatch({ type: 'setSearchScreenBackground' })
+        dispatch({ type: 'setSearchScreenBackground' });
     }
 
     return (

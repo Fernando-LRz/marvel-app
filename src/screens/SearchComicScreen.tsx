@@ -2,21 +2,21 @@ import React, { useContext, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
-import { BackgroundContext } from '../../context/BackgroundContext';
+import { BackgroundContext } from '../context/BackgroundContext';
 
 interface Props extends BottomTabScreenProps<any, any>{};
 
-const ComicHomeScreen = ({ navigation }: Props) => {
+const SearchComicScreen = ({ navigation }: Props) => {
 
-    const { setHomeScreenBackground } = useContext( BackgroundContext );
+    const { setSearchScreenBackground } = useContext( BackgroundContext );
 
     useEffect(() => {
-        navigation.addListener('focus', setHomeScreenBackground);
+        navigation.addListener('focus', setSearchScreenBackground);
     }, []);
 
     return (
         <View style={ styles.container }>
-            <Text>ComicHomeScreen</Text>
+            <Text>SearchComicScreen</Text>
         </View>
     );
 };
@@ -29,4 +29,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ComicHomeScreen;
+export default SearchComicScreen;

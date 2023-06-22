@@ -3,12 +3,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import ComicStackNavigator from './ComicStackNavigator';
-import SearchComicScreen from '../../screens/comic/SearchComicScreen';
+import CharacterStackNavigator from './CharacterStackNavigator';
+import SearchCharacterScreen from '../screens/SearchCharacterScreen';
 
 const Tab = createBottomTabNavigator();
 
-const ComicBottomTabNavigator = () => {
+const CharacterBottomTabNavigator = () => {
     return (
         <Tab.Navigator
             screenOptions={{
@@ -27,8 +27,8 @@ const ComicBottomTabNavigator = () => {
             }}
         >
             <Tab.Screen 
-                name="ComicStackNavigator" 
-                component={ ComicStackNavigator } 
+                name="CharacterStackNavigator" 
+                component={ CharacterStackNavigator } 
                 options={{
                     tabBarLabel: "Home",
                     tabBarIcon: ({ color, focused }) => 
@@ -41,19 +41,21 @@ const ComicBottomTabNavigator = () => {
             />
             <Tab.Screen 
                 name="SearchCharacterScreen" 
-                component={ SearchComicScreen } 
+                component={ SearchCharacterScreen } 
                 options={{
                     tabBarLabel: "Search",
                     tabBarIcon: ({ color, focused }) => 
-                        <Icon 
-                            name="search-outline" 
-                            color={ color } 
-                            size={ ( focused ) ? 30 : 25 }
-                        />
+                        (   <Icon 
+                                name="search-outline" 
+                                color={ color } 
+                                size={ ( focused ) ? 30 : 25 }
+                            />
+                        ),
+                    
                 }}
             />
         </Tab.Navigator>
     );
 };
 
-export default ComicBottomTabNavigator;
+export default CharacterBottomTabNavigator;

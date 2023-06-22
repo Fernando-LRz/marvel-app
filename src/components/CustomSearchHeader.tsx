@@ -1,16 +1,19 @@
-import React from 'react';
-import { StyleSheet, Image, View, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
 
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { ParamListBase } from '@react-navigation/native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
+import SearchInput from './SearchInput';
 
 interface Props {
     navigation: DrawerNavigationProp<ParamListBase, string, undefined>
 };
 
-const CustomHeader = ({ navigation }: Props) => {
+const CustomSearchHeader = ({ navigation }: Props) => {
+
+    const [ searchTerm, setSearchTerm ] = useState('');
 
     return (
         <View style={ styles.container }>
@@ -18,23 +21,12 @@ const CustomHeader = ({ navigation }: Props) => {
                 activeOpacity={ 0.8 }
                 onPress={ () => navigation.toggleDrawer() }
             >
-                <Icon name="menu-outline" size={ 50 } color="#fff"/>
+                <Icon name="menu-outline" size={ 45 } color="#fff"/>
             </TouchableOpacity>
 
-            <Image 
-                source={ require('../assets/header-marvel-logo.png') }
-                style={ styles.marvelLogo }
+            <SearchInput 
+                onDebounce={ () => setSearchTerm(searchTerm) }
             />
-
-            <TouchableOpacity
-                activeOpacity={ 0.8 }
-            >
-                {/* <Icon name="search-outline" size={ 35 } color="#fff"/> */}
-                <Image 
-                    source={ require('../assets/header-avengers-logo.png') }
-                    style={{ height: 34, width: 34 }}
-                />
-            </TouchableOpacity>
         </View>
     );
 };
@@ -42,7 +34,7 @@ const CustomHeader = ({ navigation }: Props) => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         alignItems: 'center',
         backgroundColor: 'transparent',
         paddingHorizontal: 10,
@@ -63,4 +55,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default CustomHeader;
+export default CustomSearchHeader;

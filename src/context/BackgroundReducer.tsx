@@ -3,15 +3,15 @@ export type BackgroundAction =
     | { type: 'setSearchScreenBackground' };
 
 export interface BackgroundState {
-    currentBackground: 'homeScreen' | 'searchScreen';
+    current: 'homeScreen' | 'searchScreen';
 };
 
 export const homeScreenBackground: BackgroundState = {
-    currentBackground: 'homeScreen'
+    current: 'homeScreen'
 };
 
 export const searchScreenBackground: BackgroundState = {
-    currentBackground: 'searchScreen'
+    current: 'searchScreen'
 };
 
 export const BackgroundReducer = ( state: BackgroundState, action: BackgroundAction ): BackgroundState => {

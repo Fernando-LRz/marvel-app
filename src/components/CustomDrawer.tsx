@@ -15,7 +15,7 @@ const CustomDrawer = ({ state, descriptors, navigation }: Props) => {
     return (
         <ImageBackground
             style={{ flex: 1 }}
-            source={ require('../assets/shield-bg.png') }
+            source={ require('../assets/drawer-shield-bg.png') }
         >
             <DrawerContentScrollView>
                 <DrawerItemList 
@@ -27,12 +27,5 @@ const CustomDrawer = ({ state, descriptors, navigation }: Props) => {
         </ImageBackground>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'red'
-    }
-});
 
 export default CustomDrawer;
