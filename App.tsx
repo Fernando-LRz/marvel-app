@@ -1,13 +1,15 @@
 import 'react-native-gesture-handler';
 
 import React from 'react';
-import { NavigationContainer, Theme } from '@react-navigation/native';
-import {  DefaultTheme } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
+import { DefaultTheme } from '@react-navigation/native';
+import { Theme } from '@react-navigation/native';
 
+import { BackgroundProvider } from './src/context/BackgroundContext';
 import DrawerNavigator from './src/navigation/DrawerNavigator';
-import AvengersBackground from './src/components/AvengersBackground';
+import AppBackground from './src/components/AppBackground';
 
-const theme: Theme = {
+export const theme: Theme = {
     ...DefaultTheme,  
     colors: {
         ...DefaultTheme.colors,
@@ -20,9 +22,11 @@ const App = () => {
         <NavigationContainer
             theme={ theme }
         >
-            <AvengersBackground>
-                <DrawerNavigator/>
-            </AvengersBackground>
+            <BackgroundProvider>
+                <AppBackground>
+                    <DrawerNavigator/>
+                </AppBackground>
+            </BackgroundProvider>
         </NavigationContainer>
     );
 };

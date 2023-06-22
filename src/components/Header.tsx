@@ -11,6 +11,7 @@ interface Props {
 };
 
 const Header = ({ navigation }: Props) => {
+
     return (
         <View style={ styles.container }>
             <TouchableOpacity

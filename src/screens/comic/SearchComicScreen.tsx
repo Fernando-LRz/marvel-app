@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
-const SearchComicScreen = () => {
+import { BackgroundContext } from '../../context/BackgroundContext';
+
+interface Props extends BottomTabScreenProps<any, any>{};
+
+const SearchComicScreen = ({ navigation }: Props) => {
+
+    const { setSearchScreenBackground } = useContext( BackgroundContext );
+
+    useEffect(() => {
+        navigation.addListener('focus', setSearchScreenBackground);
+    }, []);
+
     return (
         <View style={ styles.container }>
             <Text>SearchComicScreen</Text>
