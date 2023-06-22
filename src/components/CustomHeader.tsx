@@ -10,7 +10,7 @@ interface Props {
     navigation: DrawerNavigationProp<ParamListBase, string, undefined>
 };
 
-const Header = ({ navigation }: Props) => {
+const CustomHeader = ({ navigation }: Props) => {
 
     return (
         <View style={ styles.container }>
@@ -59,4 +59,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Header;
+export default CustomHeader;
