@@ -19,8 +19,8 @@ const CharacterBottomTabNavigator = () => {
                     marginBottom: 8
                 },
                 tabBarStyle: {
-                    backgroundColor: '#231b5c',
-                    borderColor: '#231b5c',
+                    backgroundColor: 'transparent',
+                    borderColor: 'transparent',
                     height: 60,
                     borderWidth: 0
                 }
@@ -45,11 +45,13 @@ const CharacterBottomTabNavigator = () => {
                 options={{
                     tabBarLabel: "Search",
                     tabBarIcon: ({ color, focused }) => 
-                        <Icon 
-                            name="search-outline" 
-                            color={ color } 
-                            size={ ( focused ) ? 30 : 25 }
-                        />
+                        (   <Icon 
+                                name="search-outline" 
+                                color={ color } 
+                                size={ ( focused ) ? 30 : 25 }
+                            />
+                        ),
+                    
                 }}
             />
         </Tab.Navigator>

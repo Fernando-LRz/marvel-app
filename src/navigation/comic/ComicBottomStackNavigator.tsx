@@ -19,8 +19,8 @@ const ComicBottomTabNavigator = () => {
                     marginBottom: 8
                 },
                 tabBarStyle: {
-                    backgroundColor: '#231b5c',
-                    borderColor: '#231b5c',
+                    backgroundColor: 'transparent',
+                    borderColor: 'transparent',
                     height: 60,
                     borderWidth: 0
                 }
@@ -43,7 +43,7 @@ const ComicBottomTabNavigator = () => {
                 name="SearchCharacterScreen" 
                 component={ SearchComicScreen } 
                 options={{
-                    tabBarLabel: "Home",
+                    tabBarLabel: "Search",
                     tabBarIcon: ({ color, focused }) => 
                         <Icon 
                             name="search-outline" 
