@@ -22,7 +22,7 @@ const SearchInput = ({ onDebounce }: Props) => {
         <View style={ styles.container }>
             <View style={ styles.backgroundText }>
                 <TextInput 
-                    placeholder="Search character..."
+                    placeholder="Search"
                     placeholderTextColor="rgba(255,255,255,0.7)"
                     autoCapitalize="none"
                     autoCorrect={ false }
@@ -65,7 +65,8 @@ const styles = StyleSheet.create({
     },
     inputText: {
         flex: 1,
-        fontSize: 18
+        fontSize: 18,
+        color: '#fff'
     }
 });
 
