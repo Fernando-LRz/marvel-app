@@ -13,6 +13,7 @@ const ComicBottomTabNavigator = () => {
         <Tab.Navigator
             screenOptions={{
                 headerShown: false,
+                tabBarHideOnKeyboard: true,
                 tabBarActiveTintColor: '#fff',
                 tabBarInactiveTintColor: 'rgba(255,255,255,0.5)',
                 tabBarLabelStyle: {
@@ -30,13 +31,14 @@ const ComicBottomTabNavigator = () => {
                 name="ComicStackNavigator" 
                 component={ ComicStackNavigator } 
                 options={{
-                    tabBarLabel: "Home",
-                    tabBarIcon: ({ color, focused }) => 
+                    tabBarLabel: "Comics",
+                    tabBarIcon: ({ color, focused }) => (
                         <Icon 
                             name="list-outline" 
                             color={ color } 
                             size={ ( focused ) ? 30 : 25 }
                         />
+                    )
                 }}
             />
             <Tab.Screen 
@@ -44,12 +46,13 @@ const ComicBottomTabNavigator = () => {
                 component={ SearchComicScreen } 
                 options={{
                     tabBarLabel: "Search",
-                    tabBarIcon: ({ color, focused }) => 
+                    tabBarIcon: ({ color, focused }) => (
                         <Icon 
                             name="search-outline" 
                             color={ color } 
                             size={ ( focused ) ? 30 : 25 }
                         />
+                    )
                 }}
             />
         </Tab.Navigator>

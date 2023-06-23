@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, ScrollView, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
 import { BackgroundContext } from '../context/BackgroundContext';
@@ -15,17 +15,29 @@ const SearchCharacterScreen = ({ navigation }: Props) => {
     }, []);
 
     return (
-        <View style={ styles.container }>
-            <Text>SearchCharacterScreen</Text>
-        </View>
+        <KeyboardAvoidingView 
+            style={ styles.container }
+            behavior="height"
+        >
+            <ScrollView>
+                <TouchableWithoutFeedback 
+                    onPress={ Keyboard.dismiss }
+                >
+                    
+                    <Text style={{ 
+                        textAlign: 'center', 
+                        color: '#fff' 
+                    }}>SearchCharacterScreen</Text>  
+
+                </TouchableWithoutFeedback>
+            </ScrollView>
+        </KeyboardAvoidingView>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+        flex: 1
     }
 });
 

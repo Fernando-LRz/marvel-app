@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { ImageBackground} from 'react-native';
+import { Dimensions, ImageBackground } from 'react-native';
 
 import { BackgroundContext } from '../context/BackgroundContext';
 
@@ -20,7 +20,10 @@ const AppBackground = ({ children }: any) => {
                 ? require('../assets/app-avengers-bg.png') 
                 : require('../assets/app-marvel-bg.png') 
             }
-            style={{ flex: 1 }}
+            style={{
+                width: Dimensions.get('window').width,
+                height: Dimensions.get('window').height,
+            }}
         >
             { children }
         </ImageBackground>

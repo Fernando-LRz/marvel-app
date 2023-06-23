@@ -22,7 +22,7 @@ const SearchInput = ({ onDebounce }: Props) => {
         <View style={ styles.container }>
             <View style={ styles.backgroundText }>
                 <TextInput 
-                    placeholder="Search Pokemon..."
+                    placeholder="Search character..."
                     placeholderTextColor="rgba(255,255,255,0.7)"
                     autoCapitalize="none"
                     autoCorrect={ false }
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         height: 40,
         paddingHorizontal: 20,
         borderRadius: 50, 
-        backgroundColor: 'rgba(255, 255, 255, 0.6)',
+        backgroundColor: 'rgba(255, 255, 255, 0.4)',
 
         shadowColor: "#000",
         shadowOffset: {

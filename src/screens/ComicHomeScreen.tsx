@@ -16,7 +16,7 @@ const ComicHomeScreen = ({ navigation }: Props) => {
 
     return (
         <View style={ styles.container }>
-            <Text>ComicHomeScreen</Text>
+            <Text style={{ color: '#fff' }}>ComicHomeScreen</Text>
         </View>
     );
 };

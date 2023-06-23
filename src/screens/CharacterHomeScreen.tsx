@@ -16,7 +16,7 @@ const CharacterHomeScreen = ({ navigation }: Props) => {
 
     return (
         <View style={ styles.container }>
-            <Text>CharacterHomeScreen</Text>
+            <Text style={{ color: '#fff' }}>CharacterHomeScreen</Text>
         </View>
     );
 };
