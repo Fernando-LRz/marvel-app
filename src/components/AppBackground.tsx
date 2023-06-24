@@ -17,8 +17,8 @@ const AppBackground = ({ children }: any) => {
         <ImageBackground
             source={ 
                 isOnHomeScreen 
-                // ? require('../assets/app-avengers-bg.png') 
-                ? require('../assets/app-marvel-bg.png') 
+                ? require('../assets/app-avengers-bg.png') 
+                // ? require('../assets/app-marvel-bg.png') 
                 : require('../assets/app-marvel-bg.png') 
             }
             style={{
