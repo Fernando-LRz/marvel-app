@@ -5,9 +5,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { DefaultTheme } from '@react-navigation/native';
 import { Theme } from '@react-navigation/native';
 
-import { BackgroundProvider } from './src/context/BackgroundContext';
 import DrawerNavigator from './src/navigation/DrawerNavigator';
 import AppBackground from './src/components/AppBackground';
+
+import { CurrentScreenProvider } from './src/context/CurrentScreenContext';
 
 export const theme: Theme = {
     ...DefaultTheme,  
@@ -22,11 +23,11 @@ const App = () => {
         <NavigationContainer
             theme={ theme }
         >
-            <BackgroundProvider>
+            <CurrentScreenProvider>
                 <AppBackground>
                     <DrawerNavigator/>
                 </AppBackground>
-            </BackgroundProvider>
+            </CurrentScreenProvider>
         </NavigationContainer>
     );
 };

@@ -1,17 +1,17 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Keyboard, KeyboardAvoidingView, ScrollView, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
-import { BackgroundContext } from '../context/BackgroundContext';
+import { CurrentScreenContext } from '../context/CurrentScreenContext';
 
 interface Props extends BottomTabScreenProps<any, any>{};
 
 const SearchComicScreen = ({ navigation }: Props) => {
 
-    const { setSearchScreenBackground } = useContext( BackgroundContext );
+    const { setSearchScreen } = useContext(CurrentScreenContext);
 
     useEffect(() => {
-        navigation.addListener('focus', setSearchScreenBackground);
+        navigation.addListener('focus', setSearchScreen);
     }, []);
 
     return (

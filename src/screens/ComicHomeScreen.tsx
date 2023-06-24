@@ -1,17 +1,17 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
-import { BackgroundContext } from '../context/BackgroundContext';
+import { CurrentScreenContext } from '../context/CurrentScreenContext';
 
 interface Props extends BottomTabScreenProps<any, any>{};
 
 const ComicHomeScreen = ({ navigation }: Props) => {
 
-    const { setHomeScreenBackground } = useContext( BackgroundContext );
+    const { setHomeScreen } = useContext(CurrentScreenContext);
 
     useEffect(() => {
-        navigation.addListener('focus', setHomeScreenBackground);
+        navigation.addListener('focus', setHomeScreen);
     }, []);
 
     return (

@@ -24,7 +24,7 @@ const CharacterBottomTabNavigator = () => {
                     borderColor: 'transparent',
                     height: 60,
                     borderWidth: 0
-                }
+                } 
             }}
         >
             <Tab.Screen 

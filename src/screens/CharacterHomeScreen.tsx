@@ -1,22 +1,22 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
-import { BackgroundContext } from '../context/BackgroundContext';
 import useCharacters from '../hooks/useCharacters';
 import CharacterCard from '../components/CharacterCard';
 import FlatListHeader from '../components/FlatListHeader';
 import FlatListFooter from '../components/FlatListFooter';
 
+import { CurrentScreenContext } from '../context/CurrentScreenContext';
+
 interface Props extends BottomTabScreenProps<any, any>{};
 
 const CharacterHomeScreen = ({ navigation }: Props) => {
-    
-    const { setHomeScreenBackground } = useContext( BackgroundContext );
+    const { setHomeScreen } = useContext(CurrentScreenContext);
     const { characterList, isLoading, loadCharacters } = useCharacters();
 
     useEffect(() => {
-        navigation.addListener('focus', setHomeScreenBackground);
+        navigation.addListener('focus', setHomeScreen);
     }, []);
 
     return (

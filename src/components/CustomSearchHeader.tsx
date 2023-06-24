@@ -21,7 +21,7 @@ const CustomSearchHeader = ({ navigation }: Props) => {
                 activeOpacity={ 0.8 }
                 onPress={ () => navigation.toggleDrawer() }
             >
-                <Icon name="menu-outline" size={ 45 } color="#fff"/>
+                <Icon name="menu-outline" size={ 50 } color="#fff"/>
             </TouchableOpacity>
 
             <SearchInput 

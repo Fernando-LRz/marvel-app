@@ -6,6 +6,7 @@ interface Props extends Character{};
 
 const CharacterCard = ({ name, thumbnail }: Props) => {
     const imageUri = thumbnail.path + '.' + thumbnail.extension;
+    console.log(name, '-', thumbnail.extension)
 
     return (
 
@@ -65,13 +66,13 @@ const CharacterCard = ({ name, thumbnail }: Props) => {
 
 const styles = StyleSheet.create({
     container: {
-        width: '45%',
+        width: 180,
         marginHorizontal: 8,
         marginVertical: 8,
         overflow: 'hidden'
     },
     bgImage: {
-        width: 185, 
+        width: '100%', 
         height: 120,
         borderRadius: 15,
         overflow: 'hidden'
@@ -80,8 +81,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 19,
         fontWeight: 'bold',
-        marginBottom: 5,
-        // textAlign: 'center'
+        marginBottom: 5
     }
 });
 

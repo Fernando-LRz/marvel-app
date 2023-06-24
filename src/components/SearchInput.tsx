@@ -42,26 +42,17 @@ const SearchInput = ({ onDebounce }: Props) => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 0.9
+        flex: 1
     },
     backgroundText: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         height: 40,
+        marginLeft: 5,
         paddingHorizontal: 20,
         borderRadius: 50, 
-        backgroundColor: 'rgba(255, 255, 255, 0.4)',
-
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-
-        elevation: 5,
+        backgroundColor: 'rgba(255, 255, 255, 0.4)'
     },
     inputText: {
         flex: 1,

@@ -25,11 +25,13 @@ const useCharacters = () => {
         const hash = generateHash(ts, publicKey, privateKey);
 
         try {
-            const response = await MarvelApi.get<MarvelCharacterResponse>(`/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}&limit=40&offset=${offset.current}`);
-            offset.current += 40;
+            const response = await MarvelApi.get<MarvelCharacterResponse>(`/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}&limit=20&offset=${offset.current}`);
+            offset.current += 20;
 
-            const filteredCharacterList = response.data.data.results.filter(c => !c.thumbnail.path.endsWith('image_not_available'));
-            setCharacterList([...characterList, ...filteredCharacterList]);
+            // const filteredCharacterList = response.data.data.results.map(c => !c.thumbnail.path.endsWith('image_not_available'));
+            // setCharacterList([...characterList, ...filteredCharacterList]);
+
+            setCharacterList([...characterList, ...response.data.data.results]);
 
         } catch (error) {
             if(isAxiosError(error)) console.log(error.response?.data);

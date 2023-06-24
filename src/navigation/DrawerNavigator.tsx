@@ -6,17 +6,17 @@ import ComicBottomTabNavigator from './ComicBottomStackNavigator';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import { BackgroundContext } from '../context/BackgroundContext';
-
 import CustomSearchHeader from '../components/CustomSearchHeader';
 import CustomHeader from '../components/CustomHeader';
 import CustomDrawer from '../components/CustomDrawer';
+
+import { CurrentScreenContext } from '../context/CurrentScreenContext';
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
 
-    const { background } = useContext( BackgroundContext )
+    const { background } = useContext(CurrentScreenContext);
 
     return (
         <Drawer.Navigator
@@ -34,11 +34,11 @@ const DrawerNavigator = () => {
                 drawerActiveTintColor: '#fff',
                 drawerInactiveTintColor: '#fff',
                 drawerActiveBackgroundColor: 'rgba(255,255,255,0.2)',
-                
+
                 header: ( background.current === 'homeScreen' ) 
-                ? ({ navigation }) => <CustomHeader navigation={ navigation }/>
-                : ({ navigation }) => <CustomSearchHeader navigation={ navigation }/>,
-            }}
+                    ? (props) => <CustomHeader { ...props }/>  
+                    : (props) => <CustomSearchHeader { ...props }/>  
+                }}
         >
             <Drawer.Screen 
                 name="CharacterBottomTabNavigator" 

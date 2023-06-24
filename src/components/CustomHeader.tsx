@@ -1,17 +1,12 @@
 import React from 'react';
 import { StyleSheet, Image, View, TouchableOpacity } from 'react-native';
-
-import { DrawerNavigationProp } from '@react-navigation/drawer';
-import { ParamListBase } from '@react-navigation/native';
+import { DrawerHeaderProps } from '@react-navigation/drawer';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
-interface Props {
-    navigation: DrawerNavigationProp<ParamListBase, string, undefined>
-};
+interface Props extends DrawerHeaderProps{};
 
 const CustomHeader = ({ navigation }: Props) => {
-
     return (
         <View style={ styles.container }>
             <TouchableOpacity
@@ -29,7 +24,6 @@ const CustomHeader = ({ navigation }: Props) => {
             <TouchableOpacity
                 activeOpacity={ 0.8 }
             >
-                {/* <Icon name="search-outline" size={ 35 } color="#fff"/> */}
                 <Image 
                     source={ require('../assets/header-avengers-logo.png') }
                     style={{ height: 34, width: 34 }}
