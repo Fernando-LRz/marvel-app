@@ -6,23 +6,8 @@ interface Props extends Character{};
 
 const CharacterCard = ({ name, thumbnail }: Props) => {
     const imageUri = thumbnail.path + '.' + thumbnail.extension;
-    console.log(name, '-', thumbnail.extension)
 
     return (
-
-        // <TouchableOpacity 
-        //     style={ styles.container }
-        //     activeOpacity={ 0.8 }
-        // >
-        //     <Image 
-        //         source={{ uri: imageUri }}
-        //         style={ styles.image }
-        //     />
-        //     <View style={{ width: '45%' }}>
-        //         <Text style={ styles.name }>{ name }</Text>
-        //     </View>
-        // </TouchableOpacity>
-
         <View style={ styles.container }>
             <Text style={ styles.name } numberOfLines={ 1 }>
                 { name }
@@ -33,36 +18,15 @@ const CharacterCard = ({ name, thumbnail }: Props) => {
             >
                 <Image 
                     source={{ uri: imageUri }}
-                    style={ styles.bgImage }
+                    style={{ 
+                        ...styles.bgImage,
+                        resizeMode: (thumbnail.path.endsWith('image_not_available')) ? 'center' : 'cover'
+                    }}
                 />
             </TouchableOpacity>
         </View>
     );
 };
-
-// const styles = StyleSheet.create({
-//     container: {
-//         width: 185, 
-//         height: 120,
-//         flexDirection: 'row',
-//         justifyContent: 'space-around',
-//         alignItems: 'center',
-//         marginHorizontal: 8,
-//         marginVertical: 8,
-//         borderRadius: 15,
-//         backgroundColor: 'rgba(135, 135, 135, 0.6)'
-//     },
-//     image: {
-//         width: 70,
-//         height: 70,
-//         borderRadius: 100
-//     },
-//     name: {
-//         color: '#fff',
-//         fontSize: 19,
-//         fontWeight: 'bold',
-//     }
-// });
 
 const styles = StyleSheet.create({
     container: {
