@@ -1,14 +1,19 @@
 import React, { useEffect, useContext } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+
+import useComics from '../hooks/useComics';
+import ComicCard from '../components/ComicCard';
+import FlatListHeader from '../components/FlatListHeader';
+import FlatListFooter from '../components/FlatListFooter';
 
 import { CurrentScreenContext } from '../context/CurrentScreenContext';
 
 interface Props extends BottomTabScreenProps<any, any>{};
 
 const ComicHomeScreen = ({ navigation }: Props) => {
-
     const { setHomeScreen } = useContext(CurrentScreenContext);
+    const { comicList, isLoading, loadComics } = useComics();
 
     useEffect(() => {
         navigation.addListener('focus', setHomeScreen);
@@ -16,16 +21,27 @@ const ComicHomeScreen = ({ navigation }: Props) => {
 
     return (
         <View style={ styles.container }>
-            <Text style={{ color: '#fff' }}>ComicHomeScreen</Text>
+            <FlatList 
+                data={ comicList }
+                keyExtractor={ ( character, index ) => (character.id + index).toString() }
+                showsVerticalScrollIndicator={ false }
+                numColumns={ 2 }
+                renderItem={ ({ item }) => <ComicCard {...item} /> }
+
+                onEndReached={ loadComics }
+                onEndReachedThreshold={ 0.6 }
+
+                ListHeaderComponent={ <FlatListHeader title="Comics"/> }
+                ListFooterComponent={ <FlatListFooter /> }
+            />
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: 20
     }
 });
 

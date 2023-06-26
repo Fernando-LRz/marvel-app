@@ -1,16 +1,16 @@
 import React from 'react';
 import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
-import { Character } from '../interfaces/characterInterfaces';
+import { Comic } from '../interfaces/comicInterfaces';
 
-interface Props extends Character{};
+interface Props extends Comic{};
 
-const CharacterCard = ({ name, thumbnail }: Props) => {
+const ComicCard = ({ title, thumbnail }: Props) => {
     const imageUri = thumbnail.path + '.' + thumbnail.extension;
 
     return (
         <View style={ styles.container }>
-            <Text style={ styles.name } numberOfLines={ 1 }>
-                { name }
+            <Text style={ styles.title } numberOfLines={ 1 }>
+                { title }
             </Text>
 
             <TouchableOpacity
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         overflow: 'hidden'
     },
-    name: {
+    title: {
         color: '#fff',
         fontSize: 19,
         fontWeight: 'bold',
@@ -46,4 +46,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default CharacterCard;
+export default ComicCard;

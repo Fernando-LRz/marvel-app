@@ -28,8 +28,8 @@ const CharacterHomeScreen = ({ navigation }: Props) => {
                 numColumns={ 2 }
                 renderItem={ ({ item }) => <CharacterCard {...item} /> }
 
-                onEndReached={ loadCharacters }
-                onEndReachedThreshold={ 0.4 }
+                // onEndReached={ loadCharacters }
+                // onEndReachedThreshold={ 0.8 }
 
                 ListHeaderComponent={ <FlatListHeader title="Characters"/> }
                 ListFooterComponent={ <FlatListFooter /> }
