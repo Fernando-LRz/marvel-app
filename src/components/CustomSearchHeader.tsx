@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { ParamListBase } from '@react-navigation/native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
+
 import SearchInput from './SearchInput';
+import useCharacters from '../hooks/useCharacters';
+import useComics from '../hooks/useComics';
+
+import { CurrentScreenContext } from '../context/CurrentScreenContext';
 
 interface Props {
     navigation: DrawerNavigationProp<ParamListBase, string, undefined>
@@ -14,6 +19,20 @@ interface Props {
 const CustomSearchHeader = ({ navigation }: Props) => {
 
     const [ searchTerm, setSearchTerm ] = useState('');
+
+    const { currentScreen } = useContext(CurrentScreenContext);
+
+    const { searchCharacters } = useCharacters();
+    const { searchComics } = useComics();
+
+    useEffect(() => {
+        if(searchTerm && currentScreen.current === 'characterSearchScreen') {
+            searchCharacters(searchTerm);
+            
+        } else if(searchTerm && currentScreen.current === 'comicSearchScreen') {
+            searchComics(searchTerm);
+        } 
+    }, [ searchTerm ]);
 
     return (
         <View style={ styles.container }>
@@ -25,7 +44,7 @@ const CustomSearchHeader = ({ navigation }: Props) => {
             </TouchableOpacity>
 
             <SearchInput 
-                onDebounce={ () => setSearchTerm(searchTerm) }
+                onDebounce={ setSearchTerm }
             />
         </View>
     );

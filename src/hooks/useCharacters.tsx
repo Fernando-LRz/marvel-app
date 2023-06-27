@@ -12,6 +12,9 @@ const useCharacters = () => {
     const [ isLoading, setIsLoading ] = useState(true);
 
     const [ characterList, setCharacterList ] = useState<Character[]>([]);
+    const [ characterOptionList, setCharacterOptionList ] = useState<Character[]>([]);
+
+    const searchOffset = useRef<number>(0);
     const offset = useRef<number>(0);
 
     useEffect(() => {
@@ -37,9 +40,30 @@ const useCharacters = () => {
 
         setIsLoading(false);
     };
+
+    const searchCharacters= async (namePrefix: string) => {
+        setIsLoading(true);
+
+        const ts = new Date().getTime().toString();
+        const hash = generateHash(ts, publicKey, privateKey);
+
+        try {
+            const response = await MarvelApi.get<MarvelCharacterResponse>(`/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}&nameStartsWith=${namePrefix}&limit=10&offset=${searchOffset.current}`);
+            searchOffset.current += 10;
+
+            const filteredList = response.data.data.results.filter(c => !c.thumbnail.path.endsWith('image_not_available') && !(c.thumbnail.path + c.thumbnail.extension).endsWith('gif'));
+            setCharacterOptionList([...characterOptionList, ...filteredList]);
+
+        } catch (error) {
+            if(isAxiosError(error)) console.log(error.response?.data);
+        }
+
+        setIsLoading(false);
+    };
     
     return {
         loadCharacters,
+        searchCharacters,
         characterList,
         isLoading
     };

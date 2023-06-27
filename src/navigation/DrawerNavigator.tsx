@@ -16,7 +16,7 @@ const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
 
-    const { background } = useContext(CurrentScreenContext);
+    const { currentScreen } = useContext(CurrentScreenContext);
 
     return (
         <Drawer.Navigator
@@ -35,7 +35,7 @@ const DrawerNavigator = () => {
                 drawerInactiveTintColor: '#fff',
                 drawerActiveBackgroundColor: 'rgba(255,255,255,0.2)',
 
-                header: ( background.current === 'homeScreen' ) 
+                header: ( currentScreen.current === 'homeScreen' ) 
                     ? (props) => <CustomHeader { ...props }/>  
                     : (props) => <CustomSearchHeader { ...props }/>  
                 }}

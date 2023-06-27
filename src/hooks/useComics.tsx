@@ -12,10 +12,13 @@ const useComics = () => {
     const [ isLoading, setIsLoading ] = useState(true);
 
     const [ comicList, setComicList ] = useState<Comic[]>([]);
+    const [ comicOptionList, setComicOptionList ] = useState<Comic[]>([]);
+
+    const searchOffset = useRef<number>(0);
     const offset = useRef<number>(0);
 
     useEffect(() => {
-        loadComics();
+        // loadComics();
     }, []);
 
     const loadComics = async () => {
@@ -37,9 +40,30 @@ const useComics = () => {
 
         setIsLoading(false);
     };
+
+    const searchComics = async (titlePrefix: string) => {
+        setIsLoading(true);
+
+        const ts = new Date().getTime().toString();
+        const hash = generateHash(ts, publicKey, privateKey);
+
+        try {
+            const response = await MarvelApi.get<MarvelComicsResponse>(`/comics?ts=${ts}&apikey=${publicKey}&hash=${hash}&titleStartsWith=${titlePrefix}&limit=10&offset=${searchOffset.current}`);
+            searchOffset.current += 10;
+
+            const filteredList = response.data.data.results.filter(c => !c.thumbnail.path.endsWith('image_not_available') && !(c.thumbnail.path + c.thumbnail.extension).endsWith('gif'));
+            setComicOptionList([...comicOptionList, ...filteredList]);
+
+        } catch (error) {
+            if(isAxiosError(error)) console.log(error.response?.data);
+        }
+
+        setIsLoading(false);
+    };
     
     return {
         loadComics,
+        searchComics,
         comicList,
         isLoading
     };

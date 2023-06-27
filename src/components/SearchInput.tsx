@@ -11,8 +11,8 @@ interface Props {
 
 const SearchInput = ({ onDebounce }: Props) => {
 
-    const [ textValue, setTextValue ] = useState('');
-    const { debouncedValue } = useDebouncedValue(textValue);
+    const [ searchTerm, setSearchTerm ] = useState('');
+    const { debouncedValue } = useDebouncedValue(searchTerm);
 
     useEffect(() => {
         onDebounce(debouncedValue);
@@ -27,8 +27,8 @@ const SearchInput = ({ onDebounce }: Props) => {
                     autoCapitalize="none"
                     autoCorrect={ false }
                     style={ styles.inputText }
-                    value={ textValue }
-                    onChangeText={ setTextValue }
+                    value={ searchTerm }
+                    onChangeText={ setSearchTerm }
                 />
                 <Icon 
                     name="search-outline"

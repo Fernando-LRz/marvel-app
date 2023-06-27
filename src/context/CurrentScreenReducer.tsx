@@ -1,25 +1,32 @@
 export type CurrentScreenAction = 
     | { type: 'setHomeScreen' }
-    | { type: 'setSearchScreen' };
+    | { type: 'setSearchCharacterScreen' }
+    | { type: 'setSearchComicScreen' };
 
 export interface CurrentScreenState {
-    current: 'homeScreen' | 'searchScreen';
+    current: 'homeScreen' | 'characterSearchScreen' | 'comicSearchScreen';
 };
 
 export const homeScreen: CurrentScreenState = {
     current: 'homeScreen'
 };
 
-export const searchScreen: CurrentScreenState = {
-    current: 'searchScreen'
+export const characterSearchScreen: CurrentScreenState = {
+    current: 'characterSearchScreen'
+};
+
+export const comicSearchScreen: CurrentScreenState = {
+    current: 'comicSearchScreen'
 };
 
 export const CurrentScreenReducer = ( state: CurrentScreenState, action: CurrentScreenAction ): CurrentScreenState => {
     switch( action.type ) {
         case 'setHomeScreen':
             return { ...homeScreen }
-        case 'setSearchScreen': 
-            return { ...searchScreen }
+        case 'setSearchCharacterScreen': 
+            return { ...characterSearchScreen }
+        case 'setSearchComicScreen': 
+            return { ...comicSearchScreen }
         default: 
             return state;
     }

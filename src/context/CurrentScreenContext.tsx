@@ -2,29 +2,37 @@ import React, { createContext, useReducer } from 'react';
 import { CurrentScreenState, CurrentScreenReducer, homeScreen } from './CurrentScreenReducer';
 
 interface CurrentScreenProps {
-    background: CurrentScreenState;
+    currentScreen: CurrentScreenState;
     setHomeScreen: () => void;
-    setSearchScreen: () => void;
+    setSearchCharacterScreen: () => void;
+    setSearchComicScreen: () => void;
 };
 
 export const CurrentScreenContext = createContext({} as CurrentScreenProps);
 
 export const CurrentScreenProvider = ({ children }: any) => {
 
-    const [ background, dispatch ] = useReducer( CurrentScreenReducer, homeScreen );
+    const [ currentScreen, dispatch ] = useReducer(CurrentScreenReducer, homeScreen);
 
     const setHomeScreen = () => {
         dispatch({ type: 'setHomeScreen' });
     }
 
-    const setSearchScreen = () => {
-        dispatch({ type: 'setSearchScreen' });
+    const setSearchCharacterScreen = () => {
+        dispatch({ type: 'setSearchCharacterScreen' });
+    }
+
+    const setSearchComicScreen = () => {
+        dispatch({ type: 'setSearchComicScreen' });
     }
 
     return (
         <CurrentScreenContext.Provider
             value={{
-                background, setHomeScreen, setSearchScreen
+                currentScreen, 
+                setHomeScreen, 
+                setSearchCharacterScreen,
+                setSearchComicScreen
             }}
         >
             { children }

@@ -8,10 +8,10 @@ interface Props extends BottomTabScreenProps<any, any>{};
 
 const SearchComicScreen = ({ navigation }: Props) => {
 
-    const { setSearchScreen } = useContext(CurrentScreenContext);
+    const { setSearchComicScreen } = useContext(CurrentScreenContext);
 
     useEffect(() => {
-        navigation.addListener('focus', setSearchScreen);
+        navigation.addListener('focus', setSearchComicScreen);
     }, []);
 
     return (
@@ -27,7 +27,7 @@ const SearchComicScreen = ({ navigation }: Props) => {
                     <Text style={{ 
                         textAlign: 'center', 
                         color: '#fff' 
-                    }}>SearchCharacterScreen</Text>  
+                    }}>SearchComicScreen</Text>  
 
                 </TouchableWithoutFeedback>
             </ScrollView>

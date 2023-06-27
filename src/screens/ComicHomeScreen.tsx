@@ -28,8 +28,8 @@ const ComicHomeScreen = ({ navigation }: Props) => {
                 numColumns={ 2 }
                 renderItem={ ({ item }) => <ComicCard {...item} /> }
 
-                onEndReached={ loadComics }
-                onEndReachedThreshold={ 0.6 }
+                // onEndReached={ loadComics }
+                // onEndReachedThreshold={ 0.6 }
 
                 ListHeaderComponent={ <FlatListHeader title="Comics"/> }
                 ListFooterComponent={ <FlatListFooter /> }

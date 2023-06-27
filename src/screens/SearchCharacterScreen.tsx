@@ -7,10 +7,10 @@ import { CurrentScreenContext } from '../context/CurrentScreenContext';
 interface Props extends BottomTabScreenProps<any, any>{};
 
 const SearchCharacterScreen = ({ navigation }: Props) => {
-    const { setSearchScreen } = useContext(CurrentScreenContext);
+    const { setSearchCharacterScreen } = useContext(CurrentScreenContext);
 
     useEffect(() => {
-        navigation.addListener('focus', setSearchScreen);
+        navigation.addListener('focus', setSearchCharacterScreen);
     }, []);
 
     return (
