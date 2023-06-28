@@ -12,10 +12,13 @@ const useCharacters = () => {
     const [ isLoading, setIsLoading ] = useState(true);
 
     const [ characterList, setCharacterList ] = useState<Character[]>([]);
-    const [ characterOptionList, setCharacterOptionList ] = useState<Character[]>([]);
+    const [ characterOptionList, setCharacterOptionList ] = useState<Character[]>([]); 
 
+    const currentSearchTerm = useRef<string>('');
     const searchOffset = useRef<number>(0);
     const offset = useRef<number>(0);
+
+    const testArray: any[] = [];
 
     useEffect(() => {
         // loadCharacters();
@@ -41,8 +44,11 @@ const useCharacters = () => {
         setIsLoading(false);
     };
 
-    const searchCharacters= async (namePrefix: string) => {
+    const searchCharacters= async (namePrefix?: string) => {
         setIsLoading(true);
+
+        if(namePrefix) currentSearchTerm.current = namePrefix;
+        if(!namePrefix) namePrefix = currentSearchTerm.current;
 
         const ts = new Date().getTime().toString();
         const hash = generateHash(ts, publicKey, privateKey);
@@ -65,7 +71,8 @@ const useCharacters = () => {
         loadCharacters,
         searchCharacters,
         characterList,
-        isLoading
+        isLoading,
+        testArray
     };
 };
 

@@ -14,8 +14,11 @@ const useComics = () => {
     const [ comicList, setComicList ] = useState<Comic[]>([]);
     const [ comicOptionList, setComicOptionList ] = useState<Comic[]>([]);
 
+    const currentSearchTerm = useRef<string>('');
     const searchOffset = useRef<number>(0);
     const offset = useRef<number>(0);
+
+    const testArray: any[] = [1,2,3,4,5,6,7,8,9,10];
 
     useEffect(() => {
         // loadComics();
@@ -41,8 +44,11 @@ const useComics = () => {
         setIsLoading(false);
     };
 
-    const searchComics = async (titlePrefix: string) => {
+    const searchComics = async (titlePrefix?: string) => {
         setIsLoading(true);
+
+        if(titlePrefix) currentSearchTerm.current = titlePrefix;
+        if(!titlePrefix) titlePrefix = currentSearchTerm.current;
 
         const ts = new Date().getTime().toString();
         const hash = generateHash(ts, publicKey, privateKey);
@@ -65,7 +71,8 @@ const useComics = () => {
         loadComics,
         searchComics,
         comicList,
-        isLoading
+        isLoading,
+        testArray
     };
 };
 

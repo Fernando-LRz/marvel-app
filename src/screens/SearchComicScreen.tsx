@@ -1,6 +1,10 @@
 import React, { useEffect, useContext } from 'react';
-import { Keyboard, KeyboardAvoidingView, ScrollView, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+
+import useComics from '../hooks/useComics';
+import SearchOptionComic from '../components/SearchOptionComic';
+import SearchOptionsFlatListFooter from '../components/SearchOptionsFlatListFooter';
 
 import { CurrentScreenContext } from '../context/CurrentScreenContext';
 
@@ -10,34 +14,36 @@ const SearchComicScreen = ({ navigation }: Props) => {
 
     const { setSearchComicScreen } = useContext(CurrentScreenContext);
 
+    const { testArray, searchComics } = useComics();
+
     useEffect(() => {
         navigation.addListener('focus', setSearchComicScreen);
     }, []);
 
     return (
-        <KeyboardAvoidingView
-            style={ styles.container }
-            behavior="height"
-        >
-            <ScrollView>
-                <TouchableWithoutFeedback 
-                    onPress={ Keyboard.dismiss }
-                >
-                    
-                    <Text style={{ 
-                        textAlign: 'center', 
-                        color: '#fff' 
-                    }}>SearchComicScreen</Text>  
+        <View style={ styles.container }>
+            <FlatList 
+                data={ testArray }
+                // keyExtractor={ ( comic, index ) => (comic.id + index).toString() }
+                keyExtractor={ ( comic, index ) => (index).toString() }
+                showsVerticalScrollIndicator={ false }
+                renderItem={ ({ item }) => <SearchOptionComic /> }
 
-                </TouchableWithoutFeedback>
-            </ScrollView>
-        </KeyboardAvoidingView>
+                ListFooterComponentStyle={ styles.footer }
+                ListFooterComponent={ 
+                    <SearchOptionsFlatListFooter onPress={ searchComics }/> 
+                }
+            /> 
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        marginHorizontal: 20
+    },
+    footer: {
+        alignItems: 'center'
     }
 });
 
