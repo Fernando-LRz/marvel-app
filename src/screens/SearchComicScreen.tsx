@@ -5,17 +5,16 @@ import useComics from '../hooks/useComics';
 import SearchInput from '../components/SearchInput';
 import SearchOptionComic from '../components/SearchOptionComic';
 import FlatListHeader from '../components/FlatListHeader';
+import SearchOptionsFlatListFooter from '../components/SearchOptionsFlatListFooter';
 
 const SearchComicScreen = () => {
-    const { searchComics, comicOptionList, clearComicOptionList } = useComics();
+    const { searchComics, comicOptionList, clearComicOptionList, isOptionLimitReached } = useComics();
     const [ searchTerm, setSearchTerm ] = useState('');
 
     useEffect(() => {
 
-        if(!searchTerm) {
-            clearComicOptionList();
-            return;
-        }
+        clearComicOptionList();
+        if(!searchTerm) return;
 
         searchComics(searchTerm);
         
@@ -37,6 +36,11 @@ const SearchComicScreen = () => {
                 renderItem={ ({item}) => <SearchOptionComic {...item} /> }
 
                 ListHeaderComponent={ <FlatListHeader title={ searchTerm }/> }
+                ListFooterComponent={
+                    (searchTerm && !isOptionLimitReached) 
+                    ? <SearchOptionsFlatListFooter onPress={ searchComics } onPressValue={ searchTerm }/> 
+                    : <></>
+                }
             />
         </View>
     );

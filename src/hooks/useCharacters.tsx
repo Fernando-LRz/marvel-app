@@ -10,11 +10,13 @@ import { Character, MarvelCharacterResponse } from '../interfaces/characterInter
 const useCharacters = () => {
 
     const [ isLoading, setIsLoading ] = useState(true);
+    const [ isOptionLimitReached, setIsOptionLimitReached ] = useState<boolean>(false);
 
     const [ characterList, setCharacterList ] = useState<Character[]>([]);
     const [ characterOptionList, setCharacterOptionList ] = useState<Character[]>([]); 
 
     const offset = useRef<number>(0);
+    const searchOffset = useRef<number>(0);
 
     useEffect(() => {
         // loadCharacters();
@@ -47,10 +49,16 @@ const useCharacters = () => {
         const hash = generateHash(ts, publicKey, privateKey);
 
         try {
-            const response = await MarvelApi.get<MarvelCharacterResponse>(`/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}&nameStartsWith=${namePrefix}&limit=10`);
-            
+            const response = await MarvelApi.get<MarvelCharacterResponse>(`/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}&nameStartsWith=${namePrefix}&limit=${offset.current}`);
+            searchOffset.current += 10;
+            console.log('characters count: ', response.data.data.count)
+            console.log('characters offset: ', searchOffset.current)
+
+            if(response.data.data.count < 10) setIsOptionLimitReached(true);
+
             const filteredList = response.data.data.results.filter(c => !c.thumbnail.path.endsWith('image_not_available') && !(c.thumbnail.path + c.thumbnail.extension).endsWith('gif'));
-            setCharacterOptionList(filteredList);
+            // setCharacterOptionList([...characterOptionList, ...filteredList]);
+            setCharacterOptionList(filteredList)
 
         } catch (error) {
             if(isAxiosError(error)) console.log(error.response?.data);
@@ -61,6 +69,9 @@ const useCharacters = () => {
 
     const clearCharacterOptionList = () => {
         setCharacterOptionList([]);
+
+        searchOffset.current = 0;
+        setIsOptionLimitReached(false);
     }
     
     return {
@@ -69,7 +80,8 @@ const useCharacters = () => {
         characterList,
         characterOptionList,
         clearCharacterOptionList,
-        isLoading
+        isLoading,
+        isOptionLimitReached
     };
 };
 

@@ -9,12 +9,14 @@ import { Comic, MarvelComicsResponse } from '../interfaces/comicInterfaces';
 
 const useComics = () => {
 
-    const [ isLoading, setIsLoading ] = useState(true);
+    const [ isLoading, setIsLoading ] = useState<boolean>(true);
+    const [ isOptionLimitReached, setIsOptionLimitReached ] = useState<boolean>(false);
 
     const [ comicList, setComicList ] = useState<Comic[]>([]);
     const [ comicOptionList, setComicOptionList ] = useState<Comic[]>([]);
 
     const offset = useRef<number>(0);
+    const searchOffset = useRef<number>(0);
 
     useEffect(() => {
         // loadComics();
@@ -47,10 +49,13 @@ const useComics = () => {
         const hash = generateHash(ts, publicKey, privateKey);
 
         try {
-            const response = await MarvelApi.get<MarvelComicsResponse>(`/comics?ts=${ts}&apikey=${publicKey}&hash=${hash}&titleStartsWith=${titlePrefix}`);
+            const response = await MarvelApi.get<MarvelComicsResponse>(`/comics?ts=${ts}&apikey=${publicKey}&hash=${hash}&titleStartsWith=${titlePrefix}&limit=10&offset=${searchOffset.current}`);
+            searchOffset.current += 10;
+
+            if(response.data.data.count < 10) setIsOptionLimitReached(true);
 
             const filteredList = response.data.data.results.filter(c => !c.thumbnail.path.endsWith('image_not_available') && !(c.thumbnail.path + c.thumbnail.extension).endsWith('gif'));
-            setComicOptionList(filteredList);
+            setComicOptionList([...comicOptionList, ...filteredList]);
 
         } catch (error) {
             if(isAxiosError(error)) console.log(error.response?.data);
@@ -61,6 +66,9 @@ const useComics = () => {
 
     const clearComicOptionList = () => {
         setComicOptionList([]);
+
+        searchOffset.current = 0;
+        setIsOptionLimitReached(false);
     }
     
     return {
@@ -69,7 +77,8 @@ const useComics = () => {
         comicList,
         comicOptionList,
         clearComicOptionList,
-        isLoading
+        isLoading,
+        isOptionLimitReached
     };
 };
 

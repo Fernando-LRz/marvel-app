@@ -5,18 +5,22 @@ import useCharacters from '../hooks/useCharacters';
 import SearchInput from '../components/SearchInput';
 import SearchOptionCharacter from '../components/SearchOptionCharacter';
 import FlatListHeader from '../components/FlatListHeader';
+import SearchOptionsFlatListFooter from '../components/SearchOptionsFlatListFooter';
 
 const SearchCharacterScreen = () => {
-    const { searchCharacters, characterOptionList, clearCharacterOptionList } = useCharacters();
     const [ searchTerm, setSearchTerm ] = useState('');
 
+    const { 
+        searchCharacters, 
+        characterOptionList, 
+        clearCharacterOptionList, 
+        isOptionLimitReached
+    } = useCharacters();
+
     useEffect(() => {
-
-        if(!searchTerm) {
-            clearCharacterOptionList();
-            return;
-        }
-
+        clearCharacterOptionList();
+        
+        if(!searchTerm) return;
         searchCharacters(searchTerm);
 
     }, [ searchTerm ]);
@@ -37,6 +41,11 @@ const SearchCharacterScreen = () => {
                 renderItem={ ({item}) => <SearchOptionCharacter {...item} /> }
 
                 ListHeaderComponent={ <FlatListHeader title={ searchTerm }/> }
+                ListFooterComponent={
+                    (searchTerm && !isOptionLimitReached ) 
+                    ? <SearchOptionsFlatListFooter onPress={ searchCharacters } onPressValue={ searchTerm }/> 
+                    : <></>
+                }
             />
         </View>
     );
