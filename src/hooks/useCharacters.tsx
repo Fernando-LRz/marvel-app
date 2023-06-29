@@ -48,7 +48,9 @@ const useCharacters = () => {
 
         try {
             const response = await MarvelApi.get<MarvelCharacterResponse>(`/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}&nameStartsWith=${namePrefix}&limit=10`);
-            setCharacterOptionList(response.data.data.results);
+            
+            const filteredList = response.data.data.results.filter(c => !c.thumbnail.path.endsWith('image_not_available') && !(c.thumbnail.path + c.thumbnail.extension).endsWith('gif'));
+            setCharacterOptionList(filteredList);
 
         } catch (error) {
             if(isAxiosError(error)) console.log(error.response?.data);
@@ -56,12 +58,17 @@ const useCharacters = () => {
 
         setIsLoading(false);
     };
+
+    const clearCharacterOptionList = () => {
+        setCharacterOptionList([]);
+    }
     
     return {
         loadCharacters,
         searchCharacters,
         characterList,
         characterOptionList,
+        clearCharacterOptionList,
         isLoading
     };
 };

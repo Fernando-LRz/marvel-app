@@ -1,17 +1,25 @@
 import React from 'react';
-import { StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, Image, TouchableOpacity, View } from 'react-native';
 
-const SearchOptionComic = () => {
+import { Comic } from '../interfaces/comicInterfaces';
+
+interface Props extends Comic{};
+
+const SearchOptionComic = ({ title, thumbnail }: Props) => {
+
+    const imageUri = thumbnail.path + '.' + thumbnail.extension;
+
     return (
         <TouchableOpacity 
             style={ styles.container }
             activeOpacity={ 0.7 }
         >
             <Image
-                source={{ uri: 'http://i.annihil.us/u/prod/marvel/i/mg/3/20/649453d2a502d.jpg' }}
+                source={{ uri: imageUri }}
                 style={ styles.image }
             />
-            <Text style={ styles.title }>Captain America</Text>
+            
+            <Text style={ styles.title }>{ title }</Text>        
         </TouchableOpacity>
     );
 };
@@ -21,8 +29,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginVertical: 10,
-        height: 100,
-        backgroundColor: 'rgba(255,255,255,0.2)',
+        height: 120,
+        backgroundColor: 'rgba(8,31,120,0.9)',
         borderRadius: 20,
         borderWidth: 1,
         borderColor: 'rgba(255,255,255,0.4)',
@@ -30,10 +38,11 @@ const styles = StyleSheet.create({
     },
     title: {
         flex: 1,
-        fontSize: 25,
+        fontSize: 20,
         fontWeight: 'bold',
         color: '#fff',
-        textAlign: 'center'
+        textAlign: 'center',
+        marginHorizontal: 10
     },
     image: {
         width: '30%',

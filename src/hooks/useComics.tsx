@@ -47,10 +47,10 @@ const useComics = () => {
         const hash = generateHash(ts, publicKey, privateKey);
 
         try {
-            const response = await MarvelApi.get<MarvelComicsResponse>(`/comics?ts=${ts}&apikey=${publicKey}&hash=${hash}&titleStartsWith=${titlePrefix}&limit=10`);
+            const response = await MarvelApi.get<MarvelComicsResponse>(`/comics?ts=${ts}&apikey=${publicKey}&hash=${hash}&titleStartsWith=${titlePrefix}`);
 
             const filteredList = response.data.data.results.filter(c => !c.thumbnail.path.endsWith('image_not_available') && !(c.thumbnail.path + c.thumbnail.extension).endsWith('gif'));
-            setComicOptionList([...comicOptionList, ...filteredList]);
+            setComicOptionList(filteredList);
 
         } catch (error) {
             if(isAxiosError(error)) console.log(error.response?.data);
@@ -58,11 +58,17 @@ const useComics = () => {
 
         setIsLoading(false);
     };
+
+    const clearComicOptionList = () => {
+        setComicOptionList([]);
+    }
     
     return {
         loadComics,
         searchComics,
         comicList,
+        comicOptionList,
+        clearComicOptionList,
         isLoading
     };
 };

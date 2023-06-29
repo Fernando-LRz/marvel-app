@@ -7,12 +7,18 @@ import SearchOptionCharacter from '../components/SearchOptionCharacter';
 import FlatListHeader from '../components/FlatListHeader';
 
 const SearchCharacterScreen = () => {
-    const { searchCharacters, characterOptionList } = useCharacters();
+    const { searchCharacters, characterOptionList, clearCharacterOptionList } = useCharacters();
     const [ searchTerm, setSearchTerm ] = useState('');
 
     useEffect(() => {
-        if(searchTerm.length === 0) return; 
+
+        if(!searchTerm) {
+            clearCharacterOptionList();
+            return;
+        }
+
         searchCharacters(searchTerm);
+
     }, [ searchTerm ]);
 
     return (
@@ -24,10 +30,11 @@ const SearchCharacterScreen = () => {
 
             <FlatList 
                 data={ characterOptionList }
-                keyExtractor={ ( character, index ) => (character.id + index).toString() }
+                keyExtractor={ ( character, index ) => (character.id.toString() + index.toString()) }
                 showsVerticalScrollIndicator={ false }
                 numColumns={ 1 }
-                renderItem={ ({ item }) => <SearchOptionCharacter {...item} /> }
+                style={{ marginTop: 70, marginBottom: 30 }}
+                renderItem={ ({item}) => <SearchOptionCharacter {...item} /> }
 
                 ListHeaderComponent={ <FlatListHeader title={ searchTerm }/> }
             />

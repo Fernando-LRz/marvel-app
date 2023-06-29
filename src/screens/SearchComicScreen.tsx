@@ -7,12 +7,18 @@ import SearchOptionComic from '../components/SearchOptionComic';
 import FlatListHeader from '../components/FlatListHeader';
 
 const SearchComicScreen = () => {
-    const { searchComics } = useComics();
+    const { searchComics, comicOptionList, clearComicOptionList } = useComics();
     const [ searchTerm, setSearchTerm ] = useState('');
 
     useEffect(() => {
-        if(searchTerm.length === 0) return; 
+
+        if(!searchTerm) {
+            clearComicOptionList();
+            return;
+        }
+
         searchComics(searchTerm);
+        
     }, [ searchTerm ]);
 
     return (
@@ -22,15 +28,16 @@ const SearchComicScreen = () => {
                 placeholder="Search comics"
             />
 
-            {/* <FlatList 
-                data={ characterOptionList }
-                keyExtractor={ ( character, index ) => (character.id + index).toString() }
+            <FlatList 
+                data={ comicOptionList }
+                keyExtractor={ ( comic, index ) => (comic.id.toString() + index.toString()) }
                 showsVerticalScrollIndicator={ false }
                 numColumns={ 1 }
-                renderItem={ ({ item }) => <SearchOptionCharacter {...item} /> }
+                style={{ marginTop: 70, marginBottom: 30 }}
+                renderItem={ ({item}) => <SearchOptionComic {...item} /> }
 
                 ListHeaderComponent={ <FlatListHeader title={ searchTerm }/> }
-            /> */}
+            />
         </View>
     );
 };

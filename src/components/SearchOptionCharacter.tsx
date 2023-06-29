@@ -37,10 +37,11 @@ const styles = StyleSheet.create({
     },
     name: {
         flex: 1,
-        fontSize: 25,
+        fontSize: 22,
         fontWeight: 'bold',
         color: '#fff',
-        textAlign: 'center'
+        textAlign: 'center',
+        marginHorizontal: 10
     },
     image: {
         width: '30%',

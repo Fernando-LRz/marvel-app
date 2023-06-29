@@ -8,8 +8,6 @@ import { Theme } from '@react-navigation/native';
 import DrawerNavigator from './src/navigation/DrawerNavigator';
 import AppBackground from './src/components/AppBackground';
 
-import { CurrentScreenProvider } from './src/context/CurrentScreenContext';
-
 export const theme: Theme = {
     ...DefaultTheme,  
     colors: {
@@ -23,11 +21,9 @@ const App = () => {
         <NavigationContainer
             theme={ theme }
         >
-            <CurrentScreenProvider>
-                <AppBackground>
-                    <DrawerNavigator/>
-                </AppBackground>
-            </CurrentScreenProvider>
+            <AppBackground>
+                <DrawerNavigator/>
+            </AppBackground>
         </NavigationContainer>
     );
 };
