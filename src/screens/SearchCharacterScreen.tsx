@@ -1,47 +1,43 @@
-import React, { useEffect, useContext } from 'react';
-import { View, FlatList, StyleSheet } from 'react-native';
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, View, FlatList } from 'react-native';
 
 import useCharacters from '../hooks/useCharacters';
+import SearchInput from '../components/SearchInput';
 import SearchOptionCharacter from '../components/SearchOptionCharacter';
-import SearchOptionsFlatListFooter from '../components/SearchOptionsFlatListFooter';
+import FlatListHeader from '../components/FlatListHeader';
 
-import { CurrentScreenContext } from '../context/CurrentScreenContext';
-
-interface Props extends BottomTabScreenProps<any, any>{};
-
-const SearchCharacterScreen = ({ navigation }: Props) => {
-    const { setSearchCharacterScreen } = useContext(CurrentScreenContext);
-
-    const { testArray, searchCharacters } = useCharacters();
+const SearchCharacterScreen = () => {
+    const { searchCharacters, characterOptionList } = useCharacters();
+    const [ searchTerm, setSearchTerm ] = useState('');
 
     useEffect(() => {
-        navigation.addListener('focus', setSearchCharacterScreen);
-    }, []);
+        if(searchTerm.length === 0) return; 
+        searchCharacters(searchTerm);
+    }, [ searchTerm ]);
 
     return (
         <View style={ styles.container }>
-            <FlatList 
-                data={ testArray }
-                // keyExtractor={ ( character, index ) => (character.id + index).toString() }
-                keyExtractor={ ( character, index ) => (index).toString() }
-                showsVerticalScrollIndicator={ false }
-                renderItem={ ({ item }) => <SearchOptionCharacter /> }
+            <SearchInput 
+                onDebounce={ setSearchTerm }
+                placeholder="Search characters"
+            />
 
-                ListFooterComponentStyle={ styles.footer }
-                ListFooterComponent={ 
-                    (testArray.length > 0) 
-                    ? <SearchOptionsFlatListFooter onPress={ searchCharacters }/> 
-                    : undefined
-                }
-            /> 
+            <FlatList 
+                data={ characterOptionList }
+                keyExtractor={ ( character, index ) => (character.id + index).toString() }
+                showsVerticalScrollIndicator={ false }
+                numColumns={ 1 }
+                renderItem={ ({ item }) => <SearchOptionCharacter {...item} /> }
+
+                ListHeaderComponent={ <FlatListHeader title={ searchTerm }/> }
+            />
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        marginHorizontal: 20
+        marginHorizontal: 10
     },
     footer: {
         alignItems: 'center'

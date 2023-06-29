@@ -1,17 +1,24 @@
 import React from 'react';
 import { StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 
-const SearchOptionCharacter = () => {
+import { Character } from '../interfaces/characterInterfaces';
+
+interface Props extends Character{};
+
+const SearchOptionCharacter = ({ name, thumbnail }: Props) => {
+    
+    const imageUri = thumbnail.path + '.' + thumbnail.extension;
+
     return (
         <TouchableOpacity 
             style={ styles.container }
             activeOpacity={ 0.7 }
         >
             <Image
-                source={{ uri: 'http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b.jpg' }}
+                source={{ uri: imageUri }}
                 style={ styles.image }
             />
-            <Text style={ styles.name }>Spider-Man</Text>
+            <Text style={ styles.name }>{ name }</Text>
         </TouchableOpacity>
     );
 };

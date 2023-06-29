@@ -1,39 +1,36 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
 import useComics from '../hooks/useComics';
+import SearchInput from '../components/SearchInput';
 import SearchOptionComic from '../components/SearchOptionComic';
-import SearchOptionsFlatListFooter from '../components/SearchOptionsFlatListFooter';
+import FlatListHeader from '../components/FlatListHeader';
 
-import { CurrentScreenContext } from '../context/CurrentScreenContext';
-
-interface Props extends BottomTabScreenProps<any, any>{};
-
-const SearchComicScreen = ({ navigation }: Props) => {
-
-    const { setSearchComicScreen } = useContext(CurrentScreenContext);
-
-    const { testArray, searchComics } = useComics();
+const SearchComicScreen = () => {
+    const { searchComics } = useComics();
+    const [ searchTerm, setSearchTerm ] = useState('');
 
     useEffect(() => {
-        navigation.addListener('focus', setSearchComicScreen);
-    }, []);
+        if(searchTerm.length === 0) return; 
+        searchComics(searchTerm);
+    }, [ searchTerm ]);
 
     return (
         <View style={ styles.container }>
-            <FlatList 
-                data={ testArray }
-                // keyExtractor={ ( comic, index ) => (comic.id + index).toString() }
-                keyExtractor={ ( comic, index ) => (index).toString() }
-                showsVerticalScrollIndicator={ false }
-                renderItem={ ({ item }) => <SearchOptionComic /> }
+            <SearchInput 
+                onDebounce={ setSearchTerm }
+                placeholder="Search comics"
+            />
 
-                ListFooterComponentStyle={ styles.footer }
-                ListFooterComponent={ 
-                    <SearchOptionsFlatListFooter onPress={ searchComics }/> 
-                }
-            /> 
+            {/* <FlatList 
+                data={ characterOptionList }
+                keyExtractor={ ( character, index ) => (character.id + index).toString() }
+                showsVerticalScrollIndicator={ false }
+                numColumns={ 1 }
+                renderItem={ ({ item }) => <SearchOptionCharacter {...item} /> }
+
+                ListHeaderComponent={ <FlatListHeader title={ searchTerm }/> }
+            /> */}
         </View>
     );
 };

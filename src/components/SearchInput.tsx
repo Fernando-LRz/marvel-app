@@ -7,9 +7,10 @@ import useDebouncedValue from '../hooks/useDebouncedValue';
 
 interface Props {
     onDebounce: (value: string) => void;
+    placeholder: string;
 };
 
-const SearchInput = ({ onDebounce }: Props) => {
+const SearchInput = ({ onDebounce, placeholder }: Props) => {
 
     const [ searchTerm, setSearchTerm ] = useState('');
     const { debouncedValue } = useDebouncedValue(searchTerm);
@@ -22,7 +23,7 @@ const SearchInput = ({ onDebounce }: Props) => {
         <View style={ styles.container }>
             <View style={ styles.backgroundText }>
                 <TextInput 
-                    placeholder="Search"
+                    placeholder={ placeholder }
                     placeholderTextColor="rgba(255,255,255,0.7)"
                     autoCapitalize="none"
                     autoCorrect={ false }
@@ -42,7 +43,9 @@ const SearchInput = ({ onDebounce }: Props) => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        height: 70,
+        marginTop: 20
     },
     backgroundText: {
         flexDirection: 'row',
