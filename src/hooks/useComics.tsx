@@ -51,8 +51,6 @@ const useComics = () => {
         try {
             const response = await MarvelApi.get<MarvelComicsResponse>(`/comics?ts=${ts}&apikey=${publicKey}&hash=${hash}&titleStartsWith=${titlePrefix}&limit=10&offset=${searchOffset.current}`);
             searchOffset.current += 10;
-            // console.log('comics count: ', response.data.data.count)
-            // console.log('comics offset: ', searchOffset.current)
 
             if(response.data.data.count < 10) setIsOptionLimitReached(true);
 

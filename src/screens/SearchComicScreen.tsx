@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
+import { StyleSheet, View, FlatList, ActivityIndicator } from 'react-native';
 
 import useComics from '../hooks/useComics';
 import SearchInput from '../components/SearchInput';
@@ -14,7 +14,8 @@ const SearchComicScreen = () => {
         searchComics, 
         comicOptionList, 
         clearComicOptionList, 
-        isOptionLimitReached 
+        isOptionLimitReached,
+        isLoading
     } = useComics();
 
     useEffect(() => {
@@ -42,9 +43,12 @@ const SearchComicScreen = () => {
 
                 ListHeaderComponent={ <FlatListHeader title={ searchTerm }/> }
                 ListFooterComponent={
-                    (searchTerm && !isOptionLimitReached) 
+                    (searchTerm && !isOptionLimitReached && !isLoading ) 
                     ? <SearchOptionsFlatListFooter onPress={ searchComics } onPressValue={ searchTerm }/> 
-                    : <></>
+
+                    : ( searchTerm && isLoading )
+                        ? <ActivityIndicator size={ 35 } color="#fff" style={{ marginVertical: 28 }} />
+                        : <></>
                 }
             />
         </View>
