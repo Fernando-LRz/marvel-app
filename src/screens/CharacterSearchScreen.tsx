@@ -7,7 +7,7 @@ import SearchOptionCharacter from '../components/SearchOptionCharacter';
 import FlatListHeader from '../components/FlatListHeader';
 import SearchOptionsFlatListFooter from '../components/SearchOptionsFlatListFooter';
 
-const SearchCharacterScreen = () => {
+const CharacterSearchScreen = () => {
     const [ searchTerm, setSearchTerm ] = useState('');
 
     const { 
@@ -64,4 +64,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default SearchCharacterScreen;
+export default CharacterSearchScreen;

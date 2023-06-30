@@ -7,9 +7,7 @@ import CharacterCard from '../components/CharacterCard';
 import FlatListHeader from '../components/FlatListHeader';
 import FlatListFooter from '../components/FlatListFooter';
 
-interface Props extends BottomTabScreenProps<any, any>{};
-
-const CharacterHomeScreen = ({ navigation }: Props) => {
+const CharacterHomeScreen = () => {
     const { characterList, loadCharacters } = useCharacters();
 
     return (

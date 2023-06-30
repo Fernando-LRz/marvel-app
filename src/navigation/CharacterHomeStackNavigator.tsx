@@ -4,9 +4,16 @@ import { createStackNavigator } from '@react-navigation/stack';
 import CharacterHomeScreen from '../screens/CharacterHomeScreen';
 import CharacterDetailsScreen from '../screens/CharacterDetailsScreen';
 
-const Stack = createStackNavigator();
+import { Character } from '../interfaces/characterInterfaces';
 
-const CharacterStackNavigator = () => {
+type RootStackParams = {
+    CharacterHomeScreen: undefined;
+    CharacterDetailsScreen: { character: Character };
+};
+
+const Stack = createStackNavigator<RootStackParams>();
+
+const CharacterHomeStackNavigator = () => {
     return (
         <Stack.Navigator
             screenOptions={{
@@ -19,4 +26,4 @@ const CharacterStackNavigator = () => {
     );
 };
 
-export default CharacterStackNavigator;
+export default CharacterHomeStackNavigator;

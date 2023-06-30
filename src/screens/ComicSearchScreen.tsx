@@ -7,7 +7,7 @@ import SearchOptionComic from '../components/SearchOptionComic';
 import FlatListHeader from '../components/FlatListHeader';
 import SearchOptionsFlatListFooter from '../components/SearchOptionsFlatListFooter';
 
-const SearchComicScreen = () => {
+const ComicSearchScreen = () => {
     const [ searchTerm, setSearchTerm ] = useState('');
 
     const { 
@@ -64,4 +64,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default SearchComicScreen;
+export default ComicSearchScreen;

@@ -3,8 +3,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import CharacterStackNavigator from './CharacterStackNavigator';
-import SearchCharacterScreen from '../screens/SearchCharacterScreen';
+import CharacterHomeStackNavigator from './CharacterHomeStackNavigator';
+import CharacterSearchStackNavigator from './CharacterSearchStackNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -28,8 +28,8 @@ const CharacterBottomTabNavigator = () => {
             }}
         >
             <Tab.Screen 
-                name="CharacterStackNavigator" 
-                component={ CharacterStackNavigator } 
+                name="CharacterHomeStackNavigator" 
+                component={ CharacterHomeStackNavigator } 
                 options={{
                     tabBarLabel: "Characters",
                     tabBarIcon: ({ color, focused }) => (
@@ -42,8 +42,8 @@ const CharacterBottomTabNavigator = () => {
                 }}
             />
             <Tab.Screen 
-                name="SearchCharacterScreen" 
-                component={ SearchCharacterScreen } 
+                name="CharacterSearchStackNavigator" 
+                component={ CharacterSearchStackNavigator } 
                 options={{
                     tabBarLabel: "Search",
                     tabBarIcon: ({ color, focused }) => (   

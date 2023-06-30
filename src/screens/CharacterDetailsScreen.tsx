@@ -1,7 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { StackScreenProps } from '@react-navigation/stack';
 
-const CharacterDetailsScreen = () => {
+interface Props extends StackScreenProps<any,any>{}
+
+const CharacterDetailsScreen = ({ navigation, route }: Props) => {
     return (
         <View style={ styles.container }>
             <Text>CharacterDetailsScreen</Text>

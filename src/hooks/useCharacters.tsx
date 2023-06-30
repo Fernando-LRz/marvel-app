@@ -19,7 +19,7 @@ const useCharacters = () => {
     const searchOffset = useRef<number>(0);
 
     useEffect(() => {
-        // loadCharacters();
+        loadCharacters();
     }, []);
 
     const loadCharacters = async () => {
@@ -29,7 +29,7 @@ const useCharacters = () => {
         const hash = generateHash(ts, publicKey, privateKey);
 
         try {
-            const response = await MarvelApi.get<MarvelCharacterResponse>(`/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}&limit=20&offset=${offset.current}`);
+            const response = await MarvelApi.get<MarvelCharacterResponse>(`/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}&limit=10&offset=${offset.current}`);
             offset.current += 20;
 
             const filteredList = response.data.data.results.filter(c => !c.thumbnail.path.endsWith('image_not_available') && !(c.thumbnail.path + c.thumbnail.extension).endsWith('gif'));
@@ -51,8 +51,6 @@ const useCharacters = () => {
         try {
             const response = await MarvelApi.get<MarvelCharacterResponse>(`/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}&nameStartsWith=${namePrefix}&limit=10&offset=${searchOffset.current}`);
             searchOffset.current += 10;
-            // console.log('characters count: ', response.data.data.count)
-            // console.log('characters offset: ', searchOffset.current)
 
             if(response.data.data.count < 10) setIsOptionLimitReached(true);
 

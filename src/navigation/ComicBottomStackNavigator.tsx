@@ -3,8 +3,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import ComicStackNavigator from './ComicStackNavigator';
-import SearchComicScreen from '../screens/SearchComicScreen';
+import ComicHomeStackNavigator from './ComicHomeStackNavigator';
+import ComicSearchStackNavigator from './ComicSearchStackNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -28,8 +28,8 @@ const ComicBottomTabNavigator = () => {
             }}
         >
             <Tab.Screen 
-                name="ComicStackNavigator" 
-                component={ ComicStackNavigator } 
+                name="ComicHomeStackNavigator" 
+                component={ ComicHomeStackNavigator } 
                 options={{
                     tabBarLabel: "Comics",
                     tabBarIcon: ({ color, focused }) => (
@@ -42,8 +42,8 @@ const ComicBottomTabNavigator = () => {
                 }}
             />
             <Tab.Screen 
-                name="SearchCharacterScreen" 
-                component={ SearchComicScreen } 
+                name="ComicSearchStackNavigator" 
+                component={ ComicSearchStackNavigator } 
                 options={{
                     tabBarLabel: "Search",
                     tabBarIcon: ({ color, focused }) => (

@@ -4,9 +4,16 @@ import { createStackNavigator } from '@react-navigation/stack';
 import ComicHomeScreen from '../screens/ComicHomeScreen';
 import ComicDetailsScreen from '../screens/ComicDetailsScreen';
 
-const Stack = createStackNavigator();
+import { Comic } from '../interfaces/comicInterfaces';
 
-const ComicStackNavigator = () => {
+type RootStackParams = {
+    ComicHomeScreen: undefined;
+    ComicDetailsScreen: { comic: Comic };
+};
+
+const Stack = createStackNavigator<RootStackParams>();
+
+const ComicHomeStackNavigator = () => {
     return (
         <Stack.Navigator
             screenOptions={{
@@ -19,4 +26,4 @@ const ComicStackNavigator = () => {
     );
 };
 
-export default ComicStackNavigator;
+export default ComicHomeStackNavigator;

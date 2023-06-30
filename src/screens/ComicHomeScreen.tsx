@@ -10,7 +10,7 @@ import FlatListFooter from '../components/FlatListFooter';
 interface Props extends BottomTabScreenProps<any, any>{};
 
 const ComicHomeScreen = ({ navigation }: Props) => {
-    const { comicList, isLoading, loadComics } = useComics();
+    const { comicList, loadComics } = useComics();
 
     return (
         <View style={ styles.container }>
