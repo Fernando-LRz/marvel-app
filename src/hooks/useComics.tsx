@@ -42,7 +42,7 @@ const useComics = () => {
         setIsLoading(false);
     };
 
-    const searchComics = async (titlePrefix?: string) => {
+    const searchComics = async (titlePrefix: string, isANewSearchTerm: boolean = false) => {
         setIsLoading(true);
 
         const ts = new Date().getTime().toString();
@@ -51,11 +51,15 @@ const useComics = () => {
         try {
             const response = await MarvelApi.get<MarvelComicsResponse>(`/comics?ts=${ts}&apikey=${publicKey}&hash=${hash}&titleStartsWith=${titlePrefix}&limit=10&offset=${searchOffset.current}`);
             searchOffset.current += 10;
+            // console.log('comics count: ', response.data.data.count)
+            // console.log('comics offset: ', searchOffset.current)
 
             if(response.data.data.count < 10) setIsOptionLimitReached(true);
 
             const filteredList = response.data.data.results.filter(c => !c.thumbnail.path.endsWith('image_not_available') && !(c.thumbnail.path + c.thumbnail.extension).endsWith('gif'));
-            setComicOptionList([...comicOptionList, ...filteredList]);
+            
+            if(!isANewSearchTerm) setComicOptionList([...comicOptionList, ...filteredList]);
+            else setComicOptionList(filteredList);
 
         } catch (error) {
             if(isAxiosError(error)) console.log(error.response?.data);
@@ -69,7 +73,7 @@ const useComics = () => {
 
         searchOffset.current = 0;
         setIsOptionLimitReached(false);
-    }
+    };
     
     return {
         loadComics,

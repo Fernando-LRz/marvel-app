@@ -8,15 +8,20 @@ import FlatListHeader from '../components/FlatListHeader';
 import SearchOptionsFlatListFooter from '../components/SearchOptionsFlatListFooter';
 
 const SearchComicScreen = () => {
-    const { searchComics, comicOptionList, clearComicOptionList, isOptionLimitReached } = useComics();
     const [ searchTerm, setSearchTerm ] = useState('');
 
+    const { 
+        searchComics, 
+        comicOptionList, 
+        clearComicOptionList, 
+        isOptionLimitReached 
+    } = useComics();
+
     useEffect(() => {
-
         clearComicOptionList();
-        if(!searchTerm) return;
 
-        searchComics(searchTerm);
+        if(!searchTerm) return;
+        searchComics(searchTerm, true);
         
     }, [ searchTerm ]);
 

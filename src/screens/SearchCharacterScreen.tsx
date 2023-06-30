@@ -14,14 +14,14 @@ const SearchCharacterScreen = () => {
         searchCharacters, 
         characterOptionList, 
         clearCharacterOptionList, 
-        isOptionLimitReached
+        isOptionLimitReached,
     } = useCharacters();
 
     useEffect(() => {
         clearCharacterOptionList();
         
         if(!searchTerm) return;
-        searchCharacters(searchTerm);
+        searchCharacters(searchTerm, true);
 
     }, [ searchTerm ]);
 
