@@ -19,7 +19,7 @@ const ComicHomeScreen = ({ navigation }: Props) => {
                 keyExtractor={ ( character, index ) => (character.id + index).toString() }
                 showsVerticalScrollIndicator={ false }
                 numColumns={ 2 }
-                renderItem={ ({ item }) => <ComicCard {...item} /> }
+                renderItem={ ({ item }) => <ComicCard comic={ item } /> }
 
                 // onEndReached={ loadComics }
                 // onEndReachedThreshold={ 0.6 }

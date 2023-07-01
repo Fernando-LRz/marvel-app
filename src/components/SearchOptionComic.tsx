@@ -1,11 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, Image, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { Comic } from '../interfaces/comicInterfaces';
 
-interface Props extends Comic{};
+interface Props {
+    comic: Comic;
+};
 
-const SearchOptionComic = ({ title, thumbnail }: Props) => {
+const SearchOptionComic = ({ comic }: Props) => {
+
+    const { title, thumbnail } = comic;
+    const navigation = useNavigation<any>();
 
     const imageUri = thumbnail.path + '.' + thumbnail.extension;
 
@@ -13,6 +19,9 @@ const SearchOptionComic = ({ title, thumbnail }: Props) => {
         <TouchableOpacity 
             style={ styles.container }
             activeOpacity={ 0.7 }
+            onPress={ 
+                () => navigation.navigate('ComicDetailsScreen', { comic }) 
+            }
         >
             <Image
                 source={{ uri: imageUri }}

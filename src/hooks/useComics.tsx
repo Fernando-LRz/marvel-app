@@ -19,7 +19,7 @@ const useComics = () => {
     const searchOffset = useRef<number>(0);
 
     useEffect(() => {
-        // loadComics();
+        loadComics();
     }, []);
 
     const loadComics = async () => {

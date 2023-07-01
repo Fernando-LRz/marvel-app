@@ -6,8 +6,8 @@ import ComicDetailsScreen from '../screens/ComicDetailsScreen';
 
 import { Comic } from '../interfaces/comicInterfaces';
 
-type RootStackParams = {
-    ComicHomeScreen: undefined;
+export type RootStackParams = {
+    HomeScreen: undefined;
     ComicDetailsScreen: { comic: Comic };
 };
 
@@ -20,7 +20,7 @@ const ComicHomeStackNavigator = () => {
                 headerShown: false
             }}
         >
-            <Stack.Screen name="ComicHomeScreen" component={ ComicHomeScreen } />
+            <Stack.Screen name="HomeScreen" component={ ComicHomeScreen } />
             <Stack.Screen name="ComicDetailsScreen" component={ ComicDetailsScreen } />
         </Stack.Navigator>
     );

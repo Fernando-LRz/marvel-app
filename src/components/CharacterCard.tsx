@@ -1,10 +1,18 @@
 import React from 'react';
 import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 import { Character } from '../interfaces/characterInterfaces';
 
-interface Props extends Character{};
+interface Props {
+    character: Character;
+};
 
-const CharacterCard = ({ name, thumbnail }: Props) => {
+const CharacterCard = ({ character }: Props) => {
+
+    const { name, thumbnail } = character;
+    const navigation = useNavigation<any>(); 
+
     const imageUri = thumbnail.path + '.' + thumbnail.extension;
 
     return (
@@ -15,6 +23,9 @@ const CharacterCard = ({ name, thumbnail }: Props) => {
 
             <TouchableOpacity
                 activeOpacity={ 0.8 }
+                onPress={ 
+                    () => navigation.navigate('CharacterDetailsScreen', { character }) 
+                }
             >
                 <Image 
                     source={{ uri: imageUri }}

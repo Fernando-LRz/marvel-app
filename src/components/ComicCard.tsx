@@ -1,10 +1,18 @@
 import React from 'react';
 import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 import { Comic } from '../interfaces/comicInterfaces';
 
-interface Props extends Comic{};
+interface Props {
+    comic: Comic;
+};
 
-const ComicCard = ({ title, thumbnail }: Props) => {
+const ComicCard = ({ comic }: Props) => {
+
+    const { title, thumbnail } = comic;
+    const navigation = useNavigation<any>();
+
     const imageUri = thumbnail.path + '.' + thumbnail.extension;
 
     return (
@@ -15,6 +23,9 @@ const ComicCard = ({ title, thumbnail }: Props) => {
 
             <TouchableOpacity
                 activeOpacity={ 0.8 }
+                onPress={ 
+                    () => navigation.navigate('ComicDetailsScreen', { comic }) 
+                }
             >
                 <Image 
                     source={{ uri: imageUri }}

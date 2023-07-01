@@ -4,12 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import CharacterSearchScreen from '../screens/CharacterSearchScreen';
 import CharacterDetailsScreen from '../screens/CharacterDetailsScreen';
 
-import { Character } from '../interfaces/characterInterfaces';
-
-type RootStackParams = {
-    CharacterSearchScreen: undefined;
-    CharacterDetailsScreen: { character: Character };
-};
+import { RootStackParams } from './CharacterHomeStackNavigator';
 
 const Stack = createStackNavigator<RootStackParams>();
 
@@ -20,7 +15,7 @@ const CharacterSearchStackNavigator = () => {
                 headerShown: false
             }}
         >
-            <Stack.Screen name="CharacterSearchScreen" component={ CharacterSearchScreen } />
+            <Stack.Screen name="HomeScreen" component={ CharacterSearchScreen } />
             <Stack.Screen name="CharacterDetailsScreen" component={ CharacterDetailsScreen } />
         </Stack.Navigator>
     );

@@ -1,11 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { Character } from '../interfaces/characterInterfaces';
 
-interface Props extends Character{};
+interface Props {
+    character: Character;
+};
 
-const SearchOptionCharacter = ({ name, thumbnail }: Props) => {
+const SearchOptionCharacter = ({ character }: Props) => {
+
+    const { name, thumbnail } = character;
+    const navigation = useNavigation<any>(); 
     
     const imageUri = thumbnail.path + '.' + thumbnail.extension;
 
@@ -13,6 +19,9 @@ const SearchOptionCharacter = ({ name, thumbnail }: Props) => {
         <TouchableOpacity 
             style={ styles.container }
             activeOpacity={ 0.7 }
+            onPress={ 
+                () => navigation.navigate('CharacterDetailsScreen', { character }) 
+            }
         >
             <Image
                 source={{ uri: imageUri }}

@@ -6,8 +6,8 @@ import CharacterDetailsScreen from '../screens/CharacterDetailsScreen';
 
 import { Character } from '../interfaces/characterInterfaces';
 
-type RootStackParams = {
-    CharacterHomeScreen: undefined;
+export type RootStackParams = {
+    HomeScreen: undefined;
     CharacterDetailsScreen: { character: Character };
 };
 
@@ -20,7 +20,7 @@ const CharacterHomeStackNavigator = () => {
                 headerShown: false
             }}
         >
-            <Stack.Screen name="CharacterHomeScreen" component={ CharacterHomeScreen } />
+            <Stack.Screen name="HomeScreen" component={ CharacterHomeScreen } />
             <Stack.Screen name="CharacterDetailsScreen" component={ CharacterDetailsScreen } />
         </Stack.Navigator>
     );

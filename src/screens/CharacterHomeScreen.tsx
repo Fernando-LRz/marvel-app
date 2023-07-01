@@ -17,7 +17,7 @@ const CharacterHomeScreen = () => {
                 keyExtractor={ ( character, index ) => (character.id + index).toString() }
                 showsVerticalScrollIndicator={ false }
                 numColumns={ 2 }
-                renderItem={ ({ item }) => <CharacterCard {...item} /> }
+                renderItem={ ({ item }) => <CharacterCard character={ item } /> }
 
                 // onEndReached={ loadCharacters }
                 // onEndReachedThreshold={ 0.6 }

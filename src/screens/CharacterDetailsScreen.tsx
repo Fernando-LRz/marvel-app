@@ -2,12 +2,14 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 
-interface Props extends StackScreenProps<any,any>{}
+import { RootStackParams } from '../navigation/CharacterHomeStackNavigator';
 
-const CharacterDetailsScreen = ({ navigation, route }: Props) => {
+interface Props extends StackScreenProps<RootStackParams, 'CharacterDetailsScreen'>{};
+
+const CharacterDetailsScreen = ({ route }: Props) => {
     return (
         <View style={ styles.container }>
-            <Text>CharacterDetailsScreen</Text>
+            <Text style={{ color: '#fff', fontSize: 25 }}>CharacterDetailsScreen</Text>
         </View>
     );
 };

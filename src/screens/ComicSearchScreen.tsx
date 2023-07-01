@@ -39,7 +39,7 @@ const ComicSearchScreen = () => {
                 showsVerticalScrollIndicator={ false }
                 numColumns={ 1 }
                 style={{ marginTop: 70, marginBottom: 30 }}
-                renderItem={ ({item}) => <SearchOptionComic {...item} /> }
+                renderItem={ ({item}) => <SearchOptionComic comic={ item } /> }
 
                 ListHeaderComponent={ <FlatListHeader title={ searchTerm }/> }
                 ListFooterComponent={
