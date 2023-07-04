@@ -1,15 +1,15 @@
 import React from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 
-import { Comic } from '../interfaces/characterComicsInterfaces';
+import { Character } from '../interfaces/comicCharactersInterfaces';
 
 interface Props {
-    comic: Comic;
+    character: Character;
 };
 
-const CharacterComicCard = ({ comic }: Props) => {
+const ComicCharacterCard = ({ character }: Props) => {
 
-    const imageUri = comic.thumbnail.path + '.' + comic.thumbnail.extension;
+    const imageUri = character.thumbnail.path + '.' + character.thumbnail.extension;
 
     return (
         <View style={ styles.container }>
@@ -17,7 +17,7 @@ const CharacterComicCard = ({ comic }: Props) => {
                 style={ styles.title }
                 numberOfLines={ 1 }
             >
-                { comic.title.toLowerCase() }
+                { character.name.toLowerCase() }
             </Text>
             <Image 
                 source={{ uri: imageUri }}
@@ -45,4 +45,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default CharacterComicCard;
+export default ComicCharacterCard;

@@ -1,17 +1,17 @@
 import React from 'react';
 import { View, ScrollView, StyleSheet, Text, FlatList } from 'react-native';
 
-import CharacterComicCard from './CharacterComicCard';
+import ComicCharacterCard from './ComicCharacterCard';
 
-import { Character } from '../interfaces/characterInterfaces';
-import { Comic } from '../interfaces/characterComicsInterfaces';
+import { Comic } from '../interfaces/comicInterfaces';
+import { Character } from '../interfaces/comicCharactersInterfaces';
 
 interface Props {
-    character: Character;
-    comicList: Comic[];
+    comic: Comic;
+    characterList: Character[];
 }
 
-const CharacterInfoCard = ({ character, comicList }: Props) => {
+const ComicInfoCard = ({ comic, characterList }: Props) => {
 
     return (
         <View style={ styles.container }>
@@ -20,25 +20,25 @@ const CharacterInfoCard = ({ character, comicList }: Props) => {
             >
                 <Text style={ styles.label }>Description</Text>
                 <Text style={ styles.text }>
-                    { (!character.description || character.description === '#N/A') ? 'No description' : character.description }
+                    { (!comic.description || comic.description === '#N/A') ? 'No description' : comic.description }
                 </Text>
 
                 <Text style={ styles.label }>Modified</Text>
                 <Text style={ styles.text }>
-                    { (character.modified.startsWith('-')) 
-                        ? character.modified.split('T')[0].substring(1)
-                        : character.modified.split('T')[0]
+                    { (comic.modified.startsWith('-')) 
+                        ? comic.modified.split('T')[0].substring(1)
+                        : comic.modified.split('T')[0]
                     }
                 </Text>
 
-                <Text style={ styles.label }>Comics</Text>
+                <Text style={ styles.label }>Characters</Text>
                 {
-                    ( comicList.length === 0 )
+                    (characterList.length === 0) 
                     ?   <Text style={ styles.text }>Not available</Text>
                     :   <FlatList 
-                            data={ comicList }
+                            data={ characterList }
                             keyExtractor={ ( comic, index ) => (comic.id.toString() + index.toString()) }
-                            renderItem={ ({ item }) => <CharacterComicCard comic={ item }/> }                
+                            renderItem={ ({ item }) => <ComicCharacterCard character={ item }/> }                
                             horizontal={ true }
                             showsHorizontalScrollIndicator={ false }
                             style={{ marginTop: 10 }}
@@ -75,4 +75,5 @@ const styles = StyleSheet.create({
     }
 });
 
-export default CharacterInfoCard;
+
+export default ComicInfoCard;

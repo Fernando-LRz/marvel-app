@@ -6,6 +6,7 @@ import generateHash from '../helpers/generateHash';
 import MarvelApi from '../api/MarvelApi';
 
 import { Comic, MarvelComicsResponse } from '../interfaces/comicInterfaces';
+import { MarvelComicCharactersResponse } from '../interfaces/comicCharactersInterfaces';
 
 const useComics = () => {
 
@@ -66,6 +67,22 @@ const useComics = () => {
         setIsLoading(false);
     };
 
+    const loadComicCharacters = async (id: number) => {
+        const ts = new Date().getTime().toString();
+        const hash = generateHash(ts, publicKey, privateKey);
+
+        try {
+            const response = await MarvelApi.get<MarvelComicCharactersResponse>(`/comics/${id}/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}`);
+            if(response.data.data.count === 0) return;
+
+            const filteredList = response.data.data.results.filter(c => !c.thumbnail.path.endsWith('image_not_available') && !(c.thumbnail.path + c.thumbnail.extension).endsWith('gif'));
+            return filteredList;    
+        
+        } catch (error) {
+            if(isAxiosError(error)) console.log(error.response?.data);
+        }
+    };
+
     const clearComicOptionList = () => {
         setComicOptionList([]);
 
@@ -76,6 +93,7 @@ const useComics = () => {
     return {
         loadComics,
         searchComics,
+        loadComicCharacters,
         comicList,
         comicOptionList,
         clearComicOptionList,

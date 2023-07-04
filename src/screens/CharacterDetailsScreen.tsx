@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParams } from '../navigation/CharacterHomeStackNavigator';
 
 import useCharacters from '../hooks/useCharacters';
-import { Comic } from '../interfaces/characterComicsInterfaces'; 
 import CharacterInfoCard from '../components/CharacterInfoCard';
+
+import { Comic } from '../interfaces/characterComicsInterfaces'; 
 
 interface Props extends StackScreenProps<RootStackParams, 'CharacterDetailsScreen'>{};
 
