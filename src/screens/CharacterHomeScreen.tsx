@@ -14,7 +14,7 @@ const CharacterHomeScreen = () => {
         <View style={ styles.container }>
             <FlatList 
                 data={ characterList }
-                keyExtractor={ ( character, index ) => (character.id + index).toString() }
+                keyExtractor={ ( character, index ) => (character.id.toString() + index.toString()) }
                 showsVerticalScrollIndicator={ false }
                 numColumns={ 2 }
                 renderItem={ ({ item }) => <CharacterCard character={ item } /> }

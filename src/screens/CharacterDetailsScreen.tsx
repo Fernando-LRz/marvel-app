@@ -1,15 +1,53 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { StackScreenProps } from '@react-navigation/stack';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, Image, ScrollView, FlatList } from 'react-native';
 
+import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParams } from '../navigation/CharacterHomeStackNavigator';
+
+import useCharacters from '../hooks/useCharacters';
+import { Comic } from '../interfaces/characterComicsInterfaces'; 
+import CharacterInfoCard from '../components/CharacterInfoCard';
 
 interface Props extends StackScreenProps<RootStackParams, 'CharacterDetailsScreen'>{};
 
 const CharacterDetailsScreen = ({ route }: Props) => {
+
+    const [ comicList, setComicList ] = useState<Comic[]>([]);
+    const { loadCharacterComics } = useCharacters();
+
+    const { character } = route.params;
+    const uri = character.thumbnail.path + '.' + character.thumbnail.extension;
+
+    const loadComics = async () => {
+        const comics = await loadCharacterComics( character.id ); 
+        if(!comics) return;
+
+        setComicList(comics);
+    }
+
+    useEffect(() => {
+        loadComics();
+    }, []);
+
     return (
         <View style={ styles.container }>
-            <Text style={{ color: '#fff', fontSize: 25 }}>CharacterDetailsScreen</Text>
+
+            <View style={ styles.header }>                
+                <Text style={ styles.name }>{ character.name }</Text>
+                <Image 
+                    source={{ uri: uri }}
+                    style={ styles.image } 
+                />
+            </View>
+
+           <CharacterInfoCard 
+                character={ character }
+                comicList={ comicList }
+           />
+
+            <View style={{ alignItems: 'center' }}>
+                <Text style={{ color: '#fff' }}>Footer</Text>
+            </View>
         </View>
     );
 };
@@ -17,8 +55,22 @@ const CharacterDetailsScreen = ({ route }: Props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
+        marginHorizontal: 18
+    },
+    header: {
         alignItems: 'center'
+    },
+    image: {
+        width: 200,
+        height: 200,
+        borderRadius: 180,
+        marginTop: 20
+    },
+    name: {
+        fontSize: 25,
+        color: '#fff',
+        fontWeight: 'bold',
+        marginTop: 20
     }
 });
 

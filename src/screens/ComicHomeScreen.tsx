@@ -16,7 +16,7 @@ const ComicHomeScreen = ({ navigation }: Props) => {
         <View style={ styles.container }>
             <FlatList 
                 data={ comicList }
-                keyExtractor={ ( character, index ) => (character.id + index).toString() }
+                keyExtractor={ ( comic, index ) => (comic.id.toString() + index.toString()) }
                 showsVerticalScrollIndicator={ false }
                 numColumns={ 2 }
                 renderItem={ ({ item }) => <ComicCard comic={ item } /> }
