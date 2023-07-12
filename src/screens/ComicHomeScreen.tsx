@@ -1,15 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
 import useComics from '../hooks/useComics';
 import ComicCard from '../components/ComicCard';
 import FlatListHeader from '../components/FlatListHeader';
 import FlatListFooter from '../components/FlatListFooter';
 
-interface Props extends BottomTabScreenProps<any, any>{};
-
-const ComicHomeScreen = ({ navigation }: Props) => {
+const ComicHomeScreen = () => {
     const { comicList, loadComics } = useComics();
 
     return (
@@ -21,8 +18,8 @@ const ComicHomeScreen = ({ navigation }: Props) => {
                 numColumns={ 2 }
                 renderItem={ ({ item }) => <ComicCard comic={ item } /> }
 
-                // onEndReached={ loadComics }
-                // onEndReachedThreshold={ 0.6 }
+                onEndReached={ loadComics }
+                onEndReachedThreshold={ 0.6 }
 
                 ListHeaderComponent={ <FlatListHeader title="Comics"/> }
                 ListFooterComponent={ <FlatListFooter /> }

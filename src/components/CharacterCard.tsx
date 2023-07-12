@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { Character } from '../interfaces/characterInterfaces';
@@ -27,6 +27,8 @@ const CharacterCard = ({ character }: Props) => {
                     () => navigation.navigate('CharacterDetailsScreen', { character }) 
                 }
             >
+                <ActivityIndicator color="rgba(255,255,255,0.8)" size={ 28 } style={ styles.loading }/>
+                
                 <Image 
                     source={{ uri: imageUri }}
                     style={ styles.bgImage }
@@ -54,6 +56,11 @@ const styles = StyleSheet.create({
         fontSize: 19,
         fontWeight: 'bold',
         marginBottom: 5
+    },
+    loading: {
+        position: 'absolute',
+        width: '100%',
+        height: '100%'
     }
 });
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
 import useCharacters from '../hooks/useCharacters';
 import CharacterCard from '../components/CharacterCard';
@@ -19,8 +18,8 @@ const CharacterHomeScreen = () => {
                 numColumns={ 2 }
                 renderItem={ ({ item }) => <CharacterCard character={ item } /> }
 
-                // onEndReached={ loadCharacters }
-                // onEndReachedThreshold={ 0.6 }
+                onEndReached={ loadCharacters }
+                onEndReachedThreshold={ 0.6 }
 
                 ListHeaderComponent={ <FlatListHeader title="Characters"/> }
                 ListFooterComponent={ <FlatListFooter /> }
