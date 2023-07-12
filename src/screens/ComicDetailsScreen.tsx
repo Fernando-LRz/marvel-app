@@ -16,11 +16,15 @@ const ComicDetailsScreen = ({ route }: Props) => {
     const [ characterList, setCharacterList ] = useState<Character[]>([]);
     const { loadComicCharacters } = useComics();
 
+    const [ isLoading, setIsLoading ] = useState<boolean>(true);
+
     const { comic } = route.params;
     const uri = comic.thumbnail.path + '.' + comic.thumbnail.extension;
 
     const loadCharacters = async () => {
         const comics = await loadComicCharacters( comic.id ); 
+        setIsLoading(false);
+
         if(!comics) return;
 
         setCharacterList(comics);
@@ -32,7 +36,6 @@ const ComicDetailsScreen = ({ route }: Props) => {
 
     return (
         <View style={ styles.container }>
-
             <View style={ styles.header }>                
                 <Text style={ styles.title }>{ comic.title }</Text>
                 <Image 
@@ -44,11 +47,8 @@ const ComicDetailsScreen = ({ route }: Props) => {
            <ComicInfoCard 
                 comic={ comic }
                 characterList={ characterList }
+                isLoading={ isLoading }
            />
-
-            <View style={{ alignItems: 'center' }}>
-                <Text style={{ color: '#fff' }}>Footer</Text>
-            </View>
         </View>
     );
 };

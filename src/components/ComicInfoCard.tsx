@@ -9,9 +9,10 @@ import { Character } from '../interfaces/comicCharactersInterfaces';
 interface Props {
     comic: Comic;
     characterList: Character[];
+    isLoading: boolean;
 }
 
-const ComicInfoCard = ({ comic, characterList }: Props) => {
+const ComicInfoCard = ({ comic, characterList, isLoading }: Props) => {
 
     return (
         <View style={ styles.container }>
@@ -20,7 +21,7 @@ const ComicInfoCard = ({ comic, characterList }: Props) => {
             >
                 <Text style={ styles.label }>Description</Text>
                 <Text style={ styles.text }>
-                    { (!comic.description || comic.description === '#N/A') ? 'No description' : comic.description }
+                    { (!comic.description || comic.description === '#N/A') ? 'Not available' : comic.description }
                 </Text>
 
                 <Text style={ styles.label }>Modified</Text>
@@ -33,7 +34,10 @@ const ComicInfoCard = ({ comic, characterList }: Props) => {
 
                 <Text style={ styles.label }>Characters</Text>
                 {
-                    (characterList.length === 0) 
+                    isLoading && <Text style={ styles.text }>Loading...</Text>
+                }
+                {
+                    ( !isLoading && characterList.length === 0 ) 
                     ?   <Text style={ styles.text }>Not available</Text>
                     :   <FlatList 
                             data={ characterList }
@@ -58,7 +62,8 @@ const styles = StyleSheet.create({
         paddingBottom: 20,
         paddingHorizontal: 20,
         marginTop: 20,
-        borderRadius: 20
+        borderRadius: 20,
+        marginBottom: 10
     },
     label: {
         fontSize: 25,

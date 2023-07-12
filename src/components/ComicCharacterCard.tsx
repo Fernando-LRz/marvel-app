@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { View, StyleSheet, Text, Image, ActivityIndicator } from 'react-native';
 
 import { Character } from '../interfaces/comicCharactersInterfaces';
 
@@ -19,6 +19,9 @@ const ComicCharacterCard = ({ character }: Props) => {
             >
                 { character.name.toLowerCase() }
             </Text>
+
+            <ActivityIndicator color="#fff" size={ 20 } style={ styles.loading }/>
+
             <Image 
                 source={{ uri: imageUri }}
                 style={ styles.image }
@@ -42,6 +45,11 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontWeight: '600',
         marginBottom: 3
+    },
+    loading: {
+        position: 'absolute',
+        width: '100%',
+        height: '100%'
     }
 });
 
