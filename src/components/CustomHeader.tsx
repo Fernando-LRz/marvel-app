@@ -38,9 +38,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: 'transparent',
         paddingHorizontal: 10,
-        height: 70
+        height: 70,
+        backgroundColor: '#000'
     },
     title: {
         fontSize: 25,

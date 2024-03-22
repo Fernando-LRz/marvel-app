@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParams } from '../navigation/CharacterHomeStackNavigator';
@@ -36,19 +36,23 @@ const CharacterDetailsScreen = ({ route }: Props) => {
 
     return (
         <View style={ styles.container }>
-            <View style={ styles.header }>                
-                <Text style={ styles.name }>{ character.name }</Text>
-                <Image 
-                    source={{ uri: uri }}
-                    style={ styles.image } 
-                />
-            </View>
+            <ScrollView
+                showsVerticalScrollIndicator={ false }
+            >
+                <View style={ styles.header }>                
+                    <Text style={ styles.name }>{ character.name }</Text>
+                    <Image 
+                        source={{ uri: uri }}
+                        style={ styles.image } 
+                    />
+                </View>
 
-           <CharacterInfoCard 
-                character={ character }
-                comicList={ comicList }
-                isLoading={ isLoading }
-           />
+                <CharacterInfoCard 
+                    character={ character }
+                    comicList={ comicList }
+                    isLoading={ isLoading }
+                />
+            </ScrollView>
         </View>
     );
 };
@@ -56,7 +60,8 @@ const CharacterDetailsScreen = ({ route }: Props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginHorizontal: 18
+        paddingHorizontal: 15,
+        backgroundColor: '#000'
     },
     header: {
         alignItems: 'center'

@@ -20,10 +20,9 @@ const ComicBottomTabNavigator = () => {
                     marginBottom: 8
                 },
                 tabBarStyle: {
-                    backgroundColor: 'transparent',
-                    borderColor: 'transparent',
+                    backgroundColor: '#000',
                     height: 60,
-                    borderWidth: 0
+                    borderColor: '#000'
                 }
             }}
         >

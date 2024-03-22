@@ -38,10 +38,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginVertical: 10,
         height: 110,
-        backgroundColor: 'rgba(54,2,150,0.9)',
+        backgroundColor: '#20253b',
         borderRadius: 20,
-        borderWidth: 1,
-        borderColor: 'rgba(255,255,255,0.4)',
         overflow: 'hidden'
     },
     name: {

@@ -57,7 +57,9 @@ const CharacterSearchScreen = () => {
 
 const styles = StyleSheet.create({
     container: {
-        marginHorizontal: 10
+        flex: 1,
+        backgroundColor: '#000',
+        paddingHorizontal: 10
     },
     footer: {
         alignItems: 'center'
