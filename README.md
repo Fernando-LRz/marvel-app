@@ -37,8 +37,8 @@ npx react-native run-android
 ## App images
 | Character home screen                                       | Character search screen                                            | Character info screen                                       | 
 | ----------------------------------------------------------- | ------------------------------------------------------------------ | ----------------------------------------------------------- | 
-| <img src="images/characters.png" width="240" height="480"/> | <img src="images/search-characters.png" width="240" height="480"/> | <img src="images/character.png" width="240" height="480"/>  | 
+| <img src="images/characters.png" width="230" height="480"/> | <img src="images/search-characters.png" width="230" height="480"/> | <img src="images/character.png" width="230" height="480"/>  | 
 
 | Comic home screen                                           | Comic search screen                                                | Comic info screen                                           |
 | ----------------------------------------------------------- | ------------------------------------------------------------------ | ----------------------------------------------------------- |
-| <img src="images/comics.png" width="240" height="480"/>     | <img src="images/search-comics.png" width="240" height="480"/>     | <img src="images/comic.png" width="240" height="480"/>      |
+| <img src="images/comics.png" width="230" height="480"/>     | <img src="images/search-comics.png" width="230" height="480"/>     | <img src="images/comic.png" width="230" height="480"/>      |
