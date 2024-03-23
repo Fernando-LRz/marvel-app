@@ -35,10 +35,10 @@ npx react-native run-android
 ```
 
 ## App images
-| Characters                                                  | Character search                                                   | Character                                                   | 
-| ----------------------------------------------------------- | ------------------------------------------------------------------ | ----------------------------------------------------------- | 
-| <img src="images/characters.png" width="230" height="480"/> | <img src="images/search-characters.png" width="230" height="480"/> | <img src="images/character.png" width="230" height="480"/>  | 
+| Characters                                                  | Character                                                  | Character search                                                   | 
+| ----------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------ | 
+| <img src="images/characters.png" width="230" height="480"/> | <img src="images/character.png" width="230" height="480"/> | <img src="images/search-characters.png" width="230" height="480"/> | 
 
-| Comics                                                      | Comic search                                                       | Comic                                                       |
-| ----------------------------------------------------------- | ------------------------------------------------------------------ | ----------------------------------------------------------- |
-| <img src="images/comics.png" width="230" height="480"/>     | <img src="images/search-comics.png" width="230" height="480"/>     | <img src="images/comic.png" width="230" height="480"/>      |
+| Comics                                                      | Comic                                                      | Comic search                                                       |
+| ----------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------ |
+| <img src="images/comics.png" width="230" height="480"/>     | <img src="images/comic.png" width="230" height="480"/>     | <img src="images/search-comics.png" width="230" height="480"/>     |
