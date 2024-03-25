@@ -26,7 +26,7 @@ npm install
 ```
 
 ## Configuration
- * A public and a private Marvel API key are required, both must be added to an .env file. There is a sample .env file in the project.
+ * A public and a private Marvel API key are required, both must be added to a .env file. There is a sample .env file in the project.
 
 ## Run the app
 ```bash
