@@ -2,8 +2,8 @@
 Marvel comics and characters information app built with React Native.
 
 ## Features
- * Infinite character scroll
- * Infinite comic scroll
+ * Infinite character scroll.
+ * Infinite comic scroll.
  * Show an image and information for each character, such as:
     - Description.
     - Comics in which the character appears.
