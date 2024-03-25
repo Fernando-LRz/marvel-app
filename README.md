@@ -10,7 +10,7 @@ Marvel comics and characters information app built with React Native.
  * Show an image and information for each comic, such as:
     - Description.
     - Characters.
- 
+      
 ## Installation
 1. Clone the repository
 ```bash
@@ -27,7 +27,6 @@ npm install
 
 ## Configuration
  * A public and a private Marvel API key are required, both must be added to an .env file. There is a sample .env file in the project.
-
 
 ## Run the app
 ```bash
