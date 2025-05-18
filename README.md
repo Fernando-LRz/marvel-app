@@ -2,14 +2,14 @@
 Marvel comics and characters information app built with React Native.
 
 ## Features
- * Infinite character scroll.
- * Infinite comic scroll.
+ * Infinite character scroll
+ * Infinite comic scroll
  * Show an image and information for each character, such as:
-    - Description.
-    - Comics in which the character appears.
+    - Description
+    - Comics in which the character appears
  * Show an image and information for each comic, such as:
-    - Description.
-    - Characters.
+    - Description
+    - Characters
       
 ## Installation
 1. Clone the repository
@@ -26,7 +26,7 @@ npm install
 ```
 
 ## Configuration
- * A public and a private Marvel API key are required, both must be added to a .env file. There is a sample .env file in the project.
+A public and a private Marvel API key are required, both must be added to a .env file. There is a sample .env file in the project.
 
 ## Run the app
 ```bash
